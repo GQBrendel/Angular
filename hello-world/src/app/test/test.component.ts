@@ -3,13 +3,15 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: '[app-test]',
   template: `
-  <h2 class="text-sucess">
+  <h2 [ngClass] = "messageClasses">
+
+
        {{greetUser()}};
   </h2>
+  <button (click) = "onClick($event)">Greet</button>
 
-  <h2 [style.color] = "hasError ? 'red' : 'green'">Style Binding</h2>
-  <h2 [style.color] = "highlightColor"> Style Binding 2 </h2>
-  <h2 [ngStyle] = "titleStyles"> Style Binding 3 </h2>
+  <button (click) = "greeting='Welcome Hello'" > Greet </button>
+  {{greeting}}
   `,
          
   styles: [`
@@ -29,6 +31,7 @@ import { Component, OnInit } from '@angular/core';
 export class TestComponent implements OnInit {
 
   public name = "Dark Lord of All";
+  public greeting = "";  
   public sucessClass = "text-sucess";
   public hasError = false;
   public isSpecial = true;
@@ -49,6 +52,11 @@ export class TestComponent implements OnInit {
   ngOnInit() {
   }
 
+  onClick(event)
+  {
+    this.greeting = "Hello Hello Olá";
+    console.log(event);
+  }
   greetUser()
   {
     return "Hello " + this.name;
