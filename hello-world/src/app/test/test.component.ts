@@ -4,14 +4,10 @@ import { Component, OnInit } from '@angular/core';
   selector: '[app-test]',
   template: `
   <h2 [ngClass] = "messageClasses">
-
-
        {{greetUser()}};
   </h2>
-  <button (click) = "onClick($event)">Greet</button>
-
-  <button (click) = "greeting='Welcome Hello'" > Greet </button>
-  {{greeting}}
+  <input #myInput type = "text">
+  <button (click) = "logMessage(myInput.value)">Log</button>
   `,
          
   styles: [`
@@ -31,8 +27,7 @@ import { Component, OnInit } from '@angular/core';
 export class TestComponent implements OnInit {
 
   public name = "Dark Lord of All";
-  public greeting = "";  
-  public sucessClass = "text-sucess";
+   public sucessClass = "text-sucess";
   public hasError = false;
   public isSpecial = true;
   public highlightColor = "orange";
@@ -52,10 +47,9 @@ export class TestComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClick(event)
+  logMessage(value)
   {
-    this.greeting = "Hello Hello Olá";
-    console.log(event);
+    console.log(value);
   }
   greetUser()
   {
