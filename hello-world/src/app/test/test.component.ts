@@ -6,12 +6,10 @@ import { Component, OnInit } from '@angular/core';
   <h2 class="text-sucess">
        {{greetUser()}};
   </h2>
-  <h2 [class] ="sucessClass">
-    {{greetUser()}};
-  </h2>
-  <h2 [ngClass]= "messageClasses" > Another Test</h2>
 
- 
+  <h2 [style.color] = "hasError ? 'red' : 'green'">Style Binding</h2>
+  <h2 [style.color] = "highlightColor"> Style Binding 2 </h2>
+  <h2 [ngStyle] = "titleStyles"> Style Binding 3 </h2>
   `,
          
   styles: [`
@@ -32,13 +30,18 @@ export class TestComponent implements OnInit {
 
   public name = "Dark Lord of All";
   public sucessClass = "text-sucess";
-  public hasError = true;
+  public hasError = false;
   public isSpecial = true;
+  public highlightColor = "orange";
   public messageClasses = {
     "text-sucess": !this.hasError,
     "text-danger": this.hasError,
     "text-special": this.isSpecial
 
+  }
+  public titleStyles = {
+    color: "blue",
+    fontStyle: "italic"
   }
 
    constructor() { }
