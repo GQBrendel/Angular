@@ -7,20 +7,37 @@ import { Component, OnInit } from '@angular/core';
        {{greetUser()}};
   </h2>
 
-  <input [(ngModel)] = "name" type = "text">
+  <h2 *ngIf = "displayName; else elseBlock" > ngif Directive </h2>
+  
+  <ng-template #elseBlock>
+    <h2> Name is hidden </h2>
+  </ng-template>
+  
+  <div *ngIf="displayName; then thenBlock; else otherElseBlock"></div>
 
-  {{name}}
+  <ng-template #thenBlock>
+    <h2>Flag is True</h2>
+  </ng-template>
+
+  <ng-template #otherElseBlock>
+    <h2>Flag is False</h2>
+  </ng-template>
+
   `,
          
-  styles: [``]
+  styles: [`
+  .text-sucess {color : green;}
+  .text-danger {color : red;}
+  .text-special {font-style: italic;}
+  `]
 })
 export class TestComponent implements OnInit {
 
+  public displayName = false;
   public name = "Dark Lord of All";
    public sucessClass = "text-sucess";
   public hasError = false;
   public isSpecial = true;
-  public highlightColor = "orange";
   public messageClasses = {
     "text-sucess": !this.hasError,
     "text-danger": this.hasError,
@@ -37,13 +54,9 @@ export class TestComponent implements OnInit {
   ngOnInit() {
   }
 
-  logMessage(value)
+   greetUser()
   {
-    console.log(value);
-  }
-  greetUser()
-  {
-    return "Hello " + this.name;
+    return "Hello " + this.name
   }
 
 }
