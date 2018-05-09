@@ -7,12 +7,11 @@ import { Component, OnInit } from '@angular/core';
        {{greetUser()}};
   </h2>
 
-  <div [ngSwitch] = "color">
-    <div *ngSwitchCase = "'red'">You Picked red color</div>
-    <div *ngSwitchCase = "'blue'">You Picked blue color</div>
-    <div *ngSwitchCase = "'green'">You Picked green color</div>
-    <div *ngSwitchDefault>Pick Again</div>
+  <div *ngFor = "let color of colors; index as i; first as f; last as l, odd as o">
+     <h2>Index => {{i}} Is this first? =>  {{f}} {{color}} Is this last? => {{l}} Is this odd? => {{o}}</h2>
   </div>
+
+  
 
   `,
          
@@ -24,7 +23,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestComponent implements OnInit {
 
-  public color = "blue";
+  public colors = ["red", "blue", "green", "yellow"];
 
 
   public displayName = false;
