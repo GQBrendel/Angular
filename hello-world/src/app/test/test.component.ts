@@ -1,17 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: '[app-test]',
+  selector: 'app-test',
   template: `
-  <h2 [ngClass] = "messageClasses">
-       {{greetUser()}};
-  </h2>
-
-  <div *ngFor = "let color of colors; index as i; first as f; last as l, odd as o">
-     <h2>Index => {{i}} Is this first? =>  {{f}} {{color}} Is this last? => {{l}} Is this odd? => {{o}}</h2>
-  </div>
-
   
+  <h2 [ngClass] = "messageClasses">
+      {{"Hello " + name}}
+  </h2>
+  <button (click) = "fireEvent()">Send Event</button>
 
   `,
          
@@ -23,12 +19,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestComponent implements OnInit {
 
-  public colors = ["red", "blue", "green", "yellow"];
-
-
+  
+  @Input("parentData") public name;
+  @Output() public childEvent = new EventEmitter();
   public displayName = false;
-  public name = "Dark Lord of All";
-   public sucessClass = "text-sucess";
+  public sucessClass = "text-sucess";
   public hasError = false;
   public isSpecial = true;
   public messageClasses = {
@@ -41,15 +36,12 @@ export class TestComponent implements OnInit {
     color: "blue",
     fontStyle: "italic"
   }
-
+  fireEvent()
+  {
+    this.childEvent.emit("Hello Parent Class o/");
+  }
    constructor() { }
 
   ngOnInit() {
   }
-
-   greetUser()
-  {
-    return "Hello " + this.name
-  }
-
 }
