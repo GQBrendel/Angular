@@ -43,7 +43,6 @@ export class EmployeeService {
     
   errorHandler(error: HttpErrorResponse)
   {
-  //return new ErrorObservable("Shit");
     return  Observable.throw(error.message || "Server Error");
   }
 }
