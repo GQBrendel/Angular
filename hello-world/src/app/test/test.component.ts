@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+
 @Component({
   selector: 'app-test',
   template: `
@@ -8,10 +9,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
       {{"Hello " + name}}
   </h2>
   <button (click) = "fireEvent()">Send Event</button>
-
+  <h1 [ngClass] = "player" >\\o/</h1>
   `,
          
   styles: [`
+
+  .text-Large {font-size": "60px"}
+
   .text-sucess {color : green;}
   .text-danger {color : red;}
   .text-special {font-style: italic;}
@@ -33,8 +37,12 @@ export class TestComponent implements OnInit {
 
   }
   public titleStyles = {
-    color: "blue",
-    fontStyle: "italic"
+    
+  }
+  public player = {
+    "text-Large" : true,
+    
+    "text-sucess" : true
   }
   fireEvent()
   {
