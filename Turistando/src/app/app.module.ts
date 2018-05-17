@@ -11,6 +11,15 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FeedPageModule } from '../pages/feed/feed.module';
+import { DatabaseProvider } from '../providers/database/database';
+
+import { fbconfig } from './fbconfig';
+import {AngularFireModule} from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+
 
 @NgModule({
   declarations: [
@@ -23,6 +32,11 @@ import { FeedPageModule } from '../pages/feed/feed.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+
+    AngularFireModule.initializeApp(fbconfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule,
     FeedPageModule
   ],
   bootstrap: [IonicApp],
@@ -36,7 +50,8 @@ import { FeedPageModule } from '../pages/feed/feed.module';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DatabaseProvider
   ]
 })
 export class AppModule {}
