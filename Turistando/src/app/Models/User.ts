@@ -1,13 +1,13 @@
 
 
-export class User {
+export interface User {
 
 
     uid? : string;
     did? : string;
     nome? : string;
     email? : string;
-    senha? : string;
+    password? : string;
     image? : string;
     imageProfile? : string;
    

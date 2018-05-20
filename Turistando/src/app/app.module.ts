@@ -19,6 +19,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginPage } from '../pages/login/login';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 
 
@@ -34,12 +35,14 @@ import { LoginPage } from '../pages/login/login';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-
+   
     AngularFireModule.initializeApp(fbconfig),
     AngularFireDatabaseModule,
+    
     AngularFireAuthModule,
     AngularFireStorageModule,
-    FeedPageModule
+    FeedPageModule,
+    FormsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

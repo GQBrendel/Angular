@@ -15,15 +15,17 @@
 
 <ion-content padding>
 
-<!-- <ion-item>
+ <ion-item>
   <ion-label floating>Email Address</ion-label>
-  <ion-input type = "text" [(ngModule)] ="user.email"></ion-input>
+  <ion-input type = "text" [(ngModel)] ="user.email"></ion-input>
 </ion-item>
 
 <ion-item>
   <ion-label floating>Password</ion-label>
-  <ion-input type = "password" [(ngModule)] ="user.password"></ion-input>
-</ion-item> -->
+  <ion-input type = "password" [(ngModel)] ="user.password"></ion-input>
+</ion-item> 
 
+<button ion-button (click) = "login()">Login</button>
+<button ion-button (click) = "register()" color = "light">Register</button>
 
 </ion-content>
