@@ -12,11 +12,11 @@ export class User {
     imageProfile? : string;
    
 
-    locations Location[];
+    /*locations Location[];
 
     constructor{
         this.locations = [];
-    }
+    }*/
 
 
 }
