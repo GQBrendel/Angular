@@ -19,6 +19,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 
@@ -30,6 +31,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
     ContactPage,
     HomePage,
     LoginPage,
+    RegisterPage,
     TabsPage
   ],
   imports: [
@@ -40,6 +42,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
     AngularFireDatabaseModule,
     
     AngularFireAuthModule,
+    AngularFireModule,
     AngularFireStorageModule,
     FeedPageModule,
     FormsModule,
@@ -51,6 +54,7 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
     ContactPage,
     HomePage,
     LoginPage,
+    RegisterPage,
     TabsPage
   ],
   providers: [
