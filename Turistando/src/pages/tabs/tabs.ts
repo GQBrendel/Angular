@@ -22,11 +22,10 @@ export class TabsPage {
   }
   ngOnInit()
   {
-//    this.setIndex(1);
+    this.setIndex(0);
   }
-  static setIndex(n:number)
+  public setIndex(n:number)
   {
-    console.log(0);
-  //  TabsPage. activeTab = n;
+    this.activeTab = n;
   }
 }

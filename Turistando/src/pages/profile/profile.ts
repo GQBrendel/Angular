@@ -32,12 +32,12 @@ export class ProfilePage {
 
   createProfile()
   {
-    this.tab.setIndex(0);
-    /*
+   
+    
     this.afAuth.authState.take(1).subscribe(auth =>{
         this.afDatabase.list(`profile/${auth.uid}`).push(this.profile)
-        .then(() => this.tab.setIndex(0)); //     .app.getRootNav().getActiveChildNav().select(0));  //.navCtrl.setRoot(HomePage));
-    })*/
+        .then(() => this.navCtrl.setRoot(HomePage));
+    })
   }
 
 }
