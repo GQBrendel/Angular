@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the FeedPage page.
+ * Generated class for the ProfilePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,23 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-feed',
-  templateUrl: 'feed.html',
+  selector: 'page-profile',
+  templateUrl: 'profile.html',
 })
-export class FeedPage 
-{
-  public userName:string = "Charlinho";
+export class ProfilePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  sum(num1:number, num2:number ): void{
-    alert(num1 + num2);
-  }
-
   ionViewDidLoad() {
-   
-    console.log('ionViewDidLoad FeedPage');
+    console.log('ionViewDidLoad ProfilePage');
   }
 
 }
