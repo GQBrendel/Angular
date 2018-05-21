@@ -15,8 +15,18 @@ export class TabsPage {
   tab2Root = ProfilePage;
   tab3Root = ContactPage;  
   tab4Root = FeedPage;
+  activeTab: number = 1;
 
   constructor() {
 
+  }
+  ngOnInit()
+  {
+//    this.setIndex(1);
+  }
+  static setIndex(n:number)
+  {
+    console.log(0);
+  //  TabsPage. activeTab = n;
   }
 }
