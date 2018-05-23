@@ -30,14 +30,15 @@ export class ProfilePage {
     public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  createProfile()
-  {
-   
+   createProfile()
+  {  
     
     this.afAuth.authState.take(1).subscribe(auth =>{
         this.afDatabase.list(`profile/${auth.uid}`).push(this.profile)
-        .then(() => this.navCtrl.setRoot(HomePage));
+        .then(() => {
+          //this.navCtrl.setRoot(TabsPage, {tab: 0});
+          this.navCtrl.parent.select(0);
+        });
     })
   }
-
 }

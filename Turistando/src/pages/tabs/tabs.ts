@@ -6,6 +6,7 @@ import { HomePage } from '../home/home';
 import { FeedPage } from '../feed/feed';
 import { ProfilePage } from '../profile/profile';
 
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 @Component({
   templateUrl: 'tabs.html'
 })
@@ -17,13 +18,15 @@ export class TabsPage {
   tab4Root = FeedPage;
   activeTab: number = 1;
 
-  constructor() {
+  
+  constructor(public navCtrl: NavController, public params: NavParams) {
+
 
   }
-  ngOnInit()
-  {
-    this.setIndex(0);
+  ngOnInit() {
+    this.activeTab = this.params.get("tab") ? this.params.get("tab") : 0;
   }
+  
   public setIndex(n:number)
   {
     this.activeTab = n;

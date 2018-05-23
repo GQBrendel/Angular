@@ -28,7 +28,7 @@ export class HomePage {
           duration: 2000
         }).present();
 
-        this.profileData = this.afDatabase.object(`profile/${data.uid}`).valueChanges();
+        //this.profileData = this.afDatabase.object(`profile/${data.uid}`).valueChanges();
 
       }
       else {
