@@ -11,4 +11,10 @@ export class HomePage {
 
   }
 
+  ionViewDidLoad() 
+  {
+   this.navCtrl.setRoot
+  }
+  
+
 }

@@ -12,6 +12,7 @@ import { AuthProvider } from '../providers/auth/auth';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { LoginPage } from '../pages/login/login';
 // AF2 Settings
 const firebaseConfig = {
   // apiKey: 'AIzaSyALKfevapBOYK202f6k5mPPfMrT1MHDv5A',
@@ -28,7 +29,7 @@ const firebaseConfig = {
 };
 @NgModule(
   {
-    declarations: [ MyApp, HomePage ],
+    declarations: [ MyApp, HomePage, LoginPage ],
     imports: [
       BrowserModule,
       IonicModule.forRoot(MyApp),
@@ -38,7 +39,8 @@ const firebaseConfig = {
     bootstrap: [IonicApp],
     entryComponents: [
       MyApp,
-      HomePage
+      HomePage,
+      LoginPage
     ],
     providers: [
       StatusBar,
