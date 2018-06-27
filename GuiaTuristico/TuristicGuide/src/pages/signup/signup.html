@@ -10,7 +10,14 @@
 <ion-content padding>
   <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
 
-
+    <ion-item>
+      <ion-label stacked>User Name</ion-label>
+      <ion-input [value]="usernameValue" [(ngModel)]="usernameValue" id = "usernameInput" formControlName="username" type="text" placeholder="Your User Name"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!signupForm.controls.username.valid">
+      <p>User name must be at least 3 characters.</p>
+      <!-- {{checkUserName()}} -->
+      </ion-item>
 
     <ion-item>
       <ion-label stacked>Email</ion-label>

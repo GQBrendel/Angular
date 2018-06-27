@@ -19,12 +19,16 @@ export class SignupPage {
   public signupForm: FormGroup;
   public loading: Loading;
   public formIsValid: boolean = true;
+ // public userNameValue: string;
+  public usernameValue:string;
 
   constructor(public nav: NavController, public authData: AuthProvider,
     public formBuilder: FormBuilder, public loadingCtrl: LoadingController,
     public alertCtrl: AlertController) {
 
     this.signupForm = formBuilder.group({     
+      
+      username: ['', Validators.compose([Validators.minLength(3), Validators.required])],
       email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
     });
@@ -47,11 +51,25 @@ export class SignupPage {
     console.log("My check if it is valid " + this.formIsValid);
  //   console.log("Tutorial check if it is valid " + this.signupForm.valid);
   }
+  checkUserName()
+  {
+      
+      //this.qty = ((<HTMLInputElement>document.getElementById("usernameInput")).value);
+      
+      console.log("The User Name is " + this.usernameValue);
+
+  }
   signupUser(){
     
     console.log("Entering in signup method");
     console.log("The value of signup.valid is " + this.signupForm.valid);
-   
+    console.log("username Input" + document.getElementById("usernameInput").innerText);
+    console.log("The User Name is " + this.usernameValue);
+
+
+
+
+
     if (!this.signupForm.valid){
       console.log(this.signupForm.value);
       console.log("So we enter in the Unvalid IF, cause the valid is " + this.signupForm.valid);
