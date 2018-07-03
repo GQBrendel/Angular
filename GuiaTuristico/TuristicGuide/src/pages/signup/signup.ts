@@ -22,6 +22,7 @@ export class SignupPage {
   public formIsValid: boolean = true;
  // public userNameValue: string;
   public usernameValue:string;
+  public userPreMail:string;
 
   constructor(public nav: NavController, public authData: AuthProvider,
     public formBuilder: FormBuilder, public loadingCtrl: LoadingController,
@@ -60,6 +61,14 @@ export class SignupPage {
       console.log("The User Name is " + this.usernameValue);
 
   }
+  breakMail(mail) {
+    var str = mail;
+    var res = str.split("@");
+    var preMail = res[0];
+    this.authData.preMailSingleton = preMail;
+    console.log("User email is " + mail);
+    console.log("User Pre Mail " + this.authData.preMailSingleton);
+  }
   signupUser(){
     
     console.log("Entering in signup method");
@@ -75,7 +84,6 @@ export class SignupPage {
       this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password)
       .then(() => {
         this.authData.loginState = true;
-        this.authData.userNameSingleTon = this.usernameValue;
         this.nav.setRoot(HomePage);
       }, (error) => {
         this.loading.dismiss().then( () => {
@@ -100,10 +108,13 @@ export class SignupPage {
     }
   }
   createPerson(usernameValue: string, email: string): void {
-    const personRef: firebase.database.Reference = firebase.database().ref('Users/' + usernameValue);
+    this.breakMail(email);
+    let preMail = this.authData.preMailSingleton;
+    const personRef: firebase.database.Reference = firebase.database().ref('Users/' + preMail);
     personRef.set({
       usernameValue,
-      email
+      email,
+      preMail,
     })
   }
 }

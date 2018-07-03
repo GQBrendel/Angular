@@ -45,9 +45,12 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
   loginUser(){
+    
+    this.breakMail(this.loginForm.value.email);
     if (!this.loginForm.valid){
       console.log(this.loginForm.value);
     } else {
+      
       this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password)
       .then( authData => {
         this.navCtrl.setRoot(HomePage);
@@ -78,6 +81,14 @@ export class LoginPage {
   
   createAccount(){
     this.navCtrl.push('SignupPage');
+  }
+  breakMail(mail) {
+    var str = mail;
+    var res = str.split("@");
+    var preMail = res[0];
+    this.authData.preMailSingleton = preMail;
+    console.log("User email is " + mail);
+    console.log("User Pre Mail " + this.authData.preMailSingleton);
   }
   
 
