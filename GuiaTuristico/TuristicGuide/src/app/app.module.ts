@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AuthProvider } from '../providers/auth/auth';
+import { Camera } from '@ionic-native/camera';
 
 // Importing AF2 Module
 
@@ -48,7 +49,8 @@ const firebaseConfig = {
       StatusBar,
       SplashScreen,
       {provide: ErrorHandler, useClass: IonicErrorHandler},
-      AuthProvider
+      AuthProvider,
+      Camera
     ]
 })
 export class AppModule {}
