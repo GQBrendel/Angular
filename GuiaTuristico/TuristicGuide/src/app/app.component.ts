@@ -20,7 +20,7 @@ export class MyApp {
       if (user) {
        // this.rootPage = HomePage;        
         this.rootPage = LoginPage;
-       // this.rootPage = TabsPage;
+        //this.rootPage = TabsPage;
         authObserver.unsubscribe();
       } else {
         this.rootPage = LoginPage;
