@@ -44,8 +44,7 @@ export class LoginPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
-  loginUser(){
-    
+  loginUser(){    
     this.breakMail(this.loginForm.value.email);
     if (!this.loginForm.valid){
       console.log(this.loginForm.value);
@@ -84,12 +83,12 @@ export class LoginPage {
   }
   breakMail(mail) {
     var str = mail;
-    var res = str.split("@");
-    var preMail = res[0];
+    var preMail = str.replace(/\./g, "&46&");
     this.authData.preMailSingleton = preMail;
     console.log("User email is " + mail);
     console.log("User Pre Mail " + this.authData.preMailSingleton);
   }
+  
   
 
 }

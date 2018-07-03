@@ -63,8 +63,7 @@ export class SignupPage {
   }
   breakMail(mail) {
     var str = mail;
-    var res = str.split("@");
-    var preMail = res[0];
+    var preMail = str.replace(/\./g, "&46&");
     this.authData.preMailSingleton = preMail;
     console.log("User email is " + mail);
     console.log("User Pre Mail " + this.authData.preMailSingleton);
