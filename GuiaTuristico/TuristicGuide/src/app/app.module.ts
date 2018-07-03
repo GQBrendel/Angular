@@ -30,7 +30,7 @@ const firebaseConfig = {
 };
 @NgModule(
   {
-    declarations: [ MyApp, HomePage, LoginPage, TabsPage ],
+    declarations: [ MyApp, /*HomePage,*/ LoginPage, TabsPage ],
     imports: [
       BrowserModule,
       IonicModule.forRoot(MyApp),
@@ -40,7 +40,7 @@ const firebaseConfig = {
     bootstrap: [IonicApp],
     entryComponents: [
       MyApp,
-      HomePage,
+      // HomePage,
       LoginPage,
       TabsPage
     ],
