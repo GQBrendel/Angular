@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { HomePage } from '../home/home';
 import { EmailValidator } from '../../validators/email';
+import firebase from 'firebase';
 
 @IonicPage()
 @Component({
@@ -66,10 +67,6 @@ export class SignupPage {
     console.log("username Input" + document.getElementById("usernameInput").innerText);
     console.log("The User Name is " + this.usernameValue);
 
-
-
-
-
     if (!this.signupForm.valid){
       console.log(this.signupForm.value);
       console.log("So we enter in the Unvalid IF, cause the valid is " + this.signupForm.valid);
@@ -77,6 +74,8 @@ export class SignupPage {
       console.log("So we enter in the VALID IF, cause the valid is " + this.signupForm.valid);
       this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password)
       .then(() => {
+        this.authData.loginState = true;
+        this.authData.userNameSingleTon = this.usernameValue;
         this.nav.setRoot(HomePage);
       }, (error) => {
         this.loading.dismiss().then( () => {
@@ -99,5 +98,12 @@ export class SignupPage {
       });
       this.loading.present();
     }
+  }
+  createPerson(usernameValue: string, email: string): void {
+    const personRef: firebase.database.Reference = firebase.database().ref('Users/' + usernameValue);
+    personRef.set({
+      usernameValue,
+      email
+    })
   }
 }

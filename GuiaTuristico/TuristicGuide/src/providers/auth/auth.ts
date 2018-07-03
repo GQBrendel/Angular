@@ -6,6 +6,8 @@ import firebase from 'firebase/app';
 export class AuthProvider {
   constructor(public afAuth: AngularFireAuth) {}
 
+  public loginState:boolean = false;
+  public userNameSingleTon:string = '';
 
   loginUser(newEmail: string, newPassword: string): Promise<any> {
     return this.afAuth.auth.signInWithEmailAndPassword(newEmail, newPassword);
