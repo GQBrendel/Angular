@@ -7,7 +7,7 @@ import {
   AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
-import { HomePage } from '../home/home';
+import { TabsPage } from '../tabs/tabs';
 import { EmailValidator } from '../../validators/email';
 import firebase from 'firebase';
 
@@ -83,7 +83,7 @@ export class SignupPage {
       this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password)
       .then(() => {
         this.authData.loginState = true;
-        this.nav.setRoot(HomePage);
+        this.nav.setRoot(TabsPage);
       }, (error) => {
         this.loading.dismiss().then( () => {
           var errorMessage: string = error.message;
