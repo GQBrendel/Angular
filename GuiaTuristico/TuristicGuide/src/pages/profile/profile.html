@@ -14,5 +14,7 @@
 
 
 <ion-content padding>
-<button ion-button (click)="takePhoto()" >Take Photo</button>
+<button ion-button (click)="capture()" >Take Photo</button>
+<img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
+<button ion-button (click)="upload()" *ngIf="captureDataUrl">Upload to Firebase!</button>
 </ion-content>
