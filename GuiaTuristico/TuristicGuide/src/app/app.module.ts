@@ -15,6 +15,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
+
+import { Geolocation } from '@ionic-native/geolocation';
 // AF2 Settings
 const firebaseConfig = {
   // apiKey: 'AIzaSyALKfevapBOYK202f6k5mPPfMrT1MHDv5A',
@@ -48,6 +50,7 @@ const firebaseConfig = {
     providers: [
       StatusBar,
       SplashScreen,
+      Geolocation,
       {provide: ErrorHandler, useClass: IonicErrorHandler},
       AuthProvider,
       Camera
