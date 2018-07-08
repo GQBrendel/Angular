@@ -17,6 +17,7 @@ export class MapsPage {
   ionViewDidEnter()
   {
     this.loadmap();
+    this.addCustomMarks("Viamão");
   }
   loadmap() {
     this.map = leaflet.map("map").fitWorld();
@@ -81,6 +82,20 @@ export class MapsPage {
       markerGroup.addLayer(marker);
       this.map.addLayer(markerGroup);
       })
+  .catch((error: any) => console.log(error));
+  }
+  addCustomMarks(location)
+  {
+    console.log("Called Add Custo Location");
+    this.nativeGeocoder.forwardGeocode(location)
+    .then((coordinates: NativeGeocoderForwardResult[]) => {
+      let markerGroup = leaflet.featureGroup();
+    let marker: any = leaflet.marker([coordinates[0].latitude, coordinates[0].longitude]).on('click', () => {
+      alert('Marker clicked');
+    })
+    markerGroup.addLayer(marker);
+    this.map.addLayer(markerGroup);
+    })
   .catch((error: any) => console.log(error));
   }
 
