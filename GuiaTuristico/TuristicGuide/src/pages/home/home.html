@@ -7,27 +7,28 @@
   </ion-header>
 
 <ion-content padding color="primary">
-  <ion-list>
-    <ion-item>
-      <ion-label fixed>First Name</ion-label>
-      <ion-input type="text" [(ngModel)]="firstName" [placeholder] = "myPerson?.usernameValue"></ion-input>
-    </ion-item>
+  
 
-    <ion-item>
-      <ion-label fixed>Last Name</ion-label>
-      <ion-input type="text" [(ngModel)]="lastName"></ion-input>
-    </ion-item>
-  </ion-list>
+  <ion-item>
+    <ion-avatar item-end>
+      <img src="http://www.disneyinfinityfans.com/download/file.php?avatar=64_1383940647.png">
+    </ion-avatar>
+    <h1>Turismos no bolso </h1>
+    <p margin-left = auto>Seu Guia Turistico </p>
+      <p margin-left = auto> em Porto Alegre</p>
+  </ion-item>
+  <br>
+  <img height="250" width="300" src="assets/imgs/icon.png"  margin-left= auto  margin-right= auto>
 
-
-  <button ion-button block (click)="createPerson(firstName, lastName)">
-    Create Person
-  </button>
-  <p>
-    Welcome to this app {{ myPerson?.usernameValue }} 
-    I can see that your e-mail is {{ myPerson?.email }} and this is awesome
-
-  </p>
+  <h3>
+    Você não está próximo a nenhuma localidade, visite o mapa para encontrar
+    um ponto turístico próximo à você.
+  </h3>
+  <br>
+  <!-- <button ion-button block (click)="visitPlace()">
+      Visit
+  </button> -->
+  
 
 
 </ion-content>

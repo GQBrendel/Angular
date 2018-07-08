@@ -20,23 +20,9 @@ export class HomePage {
     });
   }
 
-  createPerson(firstName: string, lastName: string): void {
-    const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);
-    personRef.set({
-      firstName,
-      lastName
-    })
-  }
-  removePerson(): void {
-    const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);
-    personRef.remove()
-  }
-  updatePerson(firstName: string, lastName: string): void {
-    const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);
-    personRef.update({
-      firstName,
-      lastName
-    })    
+  visitPlace()
+  {
+    
   }
 
 }
