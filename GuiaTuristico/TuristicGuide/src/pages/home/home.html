@@ -10,7 +10,7 @@
   <ion-list>
     <ion-item>
       <ion-label fixed>First Name</ion-label>
-      <ion-input type="text" [(ngModel)]="firstName"></ion-input>
+      <ion-input type="text" [(ngModel)]="firstName" [placeholder] = "myPerson?.usernameValue"></ion-input>
     </ion-item>
 
     <ion-item>

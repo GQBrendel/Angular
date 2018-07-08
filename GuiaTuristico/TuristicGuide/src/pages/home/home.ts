@@ -15,12 +15,9 @@ export class HomePage {
 
   ionViewDidLoad() {
     const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);
-    var starCountRef = firebase.database().ref('posts/' + 2 + '/starCount');
-    personRef.on('value', personSnapshot => {
+     personRef.on('value', personSnapshot => {
       this.myPerson = personSnapshot.val();
     });
-  //  console.log("Person Name is " + personRef.userNameValue);
-//    console.log("Person Ref is " + personRef);
   }
 
   createPerson(firstName: string, lastName: string): void {
@@ -39,9 +36,7 @@ export class HomePage {
     personRef.update({
       firstName,
       lastName
-    })
-
-    
+    })    
   }
 
 }

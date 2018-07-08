@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {storage } from 'firebase';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import firebase from 'firebase';
+import { AuthProvider } from '../../providers/auth/auth';
+
 
 /**
  * Generated class for the ProfilePage page.
@@ -17,14 +20,19 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 })
 export class ProfilePage {
 
-  constructor(private camera: Camera, public navCtrl: NavController, public navParams: NavParams) {
+  public myPerson = {};
+  
+  constructor(private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public authData: AuthProvider) {
     var metadata = {
       contentType: 'image/jpeg'
     }
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+    const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);
+     personRef.on('value', personSnapshot => {
+      this.myPerson = personSnapshot.val();
+    });
   }
  
   captureDataUrl: string;
@@ -43,31 +51,6 @@ export class ProfilePage {
       // Handle error
     });
   }
-  async takePhoto()
-  {/*
-    this.capture();/*
-    //Defining Camera Options:
-    try     {      
-      const options: CameraOptions = {
-        quality: 50,
-        targetHeight: 600,
-        targetWidth: 600,
-        destinationType: this.camera.DestinationType.DATA_URL,
-        encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE      
-      }
-        const result = await this.camera.getPicture(options);
-
-        const image = `data:image/jpeg;base64${result}`;
-        const pictures = storage().ref('Image');
-        //pictures.putString(image, 'base64');      
-        pictures.putString(image, 'base64');
-        
-    }
-    catch(e){
-        console.error(e);
-    }*/
-  }
   upload() {
     let storageRef = storage().ref();
     // Create a timestamp as filename
@@ -79,6 +62,24 @@ export class ProfilePage {
     imageRef.putString(this.captureDataUrl, storage.StringFormat.DATA_URL).then((snapshot)=> {
       // Do something here when the data is succesfully uploaded!
      });
+  }
+  createPerson(firstName: string, lastName: string): void {
+    const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);
+    personRef.set({
+      firstName,
+      lastName
+    })
+  }
+  removePerson(): void {
+    const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);
+    personRef.remove()
+  }
+  updatePerson(usernameValue: string, lastName: string): void {
+    const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);
+    personRef.update({
+      usernameValue,
+      lastName
+    })    
   }
 
 }
