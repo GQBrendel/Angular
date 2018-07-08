@@ -11,6 +11,8 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 export class HomePage {
   public myPerson = {};
+  public nearSomePlace: boolean;
+
   constructor(public navCtrl: NavController, public authData: AuthProvider, public navParams: NavParams){}
 
   ionViewDidLoad() {
@@ -22,7 +24,11 @@ export class HomePage {
 
   visitPlace()
   {
-    
+      this.navCtrl.push('LocationPage');
+  }
+  checkDistance()
+  {
+
   }
 
 }

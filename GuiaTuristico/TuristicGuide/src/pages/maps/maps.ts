@@ -41,6 +41,11 @@ export class MapsPage {
     }) 
   }
 
+  getCurrentLocation()
+  {
+    
+  }
+
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     private alertCtrl: AlertController,private nativeGeocoder: NativeGeocoder) {
   }
