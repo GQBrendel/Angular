@@ -16,7 +16,10 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 
-import { Geolocation } from '@ionic-native/geolocation';
+import { Geolocation } from '@ionic-native/geolocation'; 
+import { NativeGeocoderForwardResult, NativeGeocoder } from '@ionic-native/native-geocoder';
+import { MarkersProvider } from '../providers/markers/markers';
+
 // AF2 Settings
 const firebaseConfig = {
   // apiKey: 'AIzaSyALKfevapBOYK202f6k5mPPfMrT1MHDv5A',
@@ -51,9 +54,11 @@ const firebaseConfig = {
       StatusBar,
       SplashScreen,
       Geolocation,
+      NativeGeocoder,
       {provide: ErrorHandler, useClass: IonicErrorHandler},
       AuthProvider,
-      Camera
+      Camera,
+    MarkersProvider
     ]
 })
 export class AppModule {}
