@@ -25,7 +25,7 @@
     um ponto turístico próximo à você.
   </h3>
   <br>
-  <button ion-button block (click)="visitPlace()">
+  <button ion-button [disabled]="nearSomePlace" block (click)="visitPlace()">
       Visitar
   </button>
   
