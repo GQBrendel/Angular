@@ -15,9 +15,12 @@ export class MapsPage {
   @ViewChild('map') mapContainer: ElementRef;
   map: any;
 
+  ionViewDidLoad()
+  {    
+    this.loadmap();
+  }
   ionViewDidEnter()
   {
-    this.loadmap();
     this.addCustomMarks("Viamão");
     this.populateMap();
     this.getCurrentLocation();

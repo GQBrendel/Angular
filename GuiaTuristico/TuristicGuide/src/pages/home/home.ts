@@ -14,6 +14,7 @@ export class HomePage {
 
   public myPerson = {};
   public nearSomePlace: boolean;
+  public messageToUser: string;
 
   constructor(public navCtrl: NavController, public authData: AuthProvider,  public locationData: LocationProvider,public navParams: NavParams){}
 
@@ -22,7 +23,23 @@ export class HomePage {
      personRef.on('value', personSnapshot => {
       this.myPerson = personSnapshot.val();
     });
+  }
+  
+  ionViewDidEnter()
+  {
+    this.checkIfNearLocation();
+  }
+  checkIfNearLocation()
+  {
     this.nearSomePlace = this.locationData.isCloseToLocation;
+    if(this.nearSomePlace)
+    {
+      this.messageToUser = "Pertinho de " + this.locationData.closeLocationName;
+    }
+    else
+    {
+      this.messageToUser = "Você não está próximo a nenhuma localidade, visite o mapa para encontrar um ponto turístico próximo à você."
+    }
   }
 
   visitPlace()

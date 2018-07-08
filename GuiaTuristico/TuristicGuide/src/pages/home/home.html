@@ -19,13 +19,14 @@
   </ion-item>
   <br>
   <img height="250" width="300" src="assets/imgs/icon.png"  margin-left= auto  margin-right= auto>
+        <h3>
+          {{ messageToUser }}
+        </h3>
+            <img src="http://www.disneyinfinityfans.com/download/file.php?avatar=64_1383940647.png">
 
-  <h3>
-    Você não está próximo a nenhuma localidade, visite o mapa para encontrar
-    um ponto turístico próximo à você.
-  </h3>
+   
   <br>
-  <button ion-button [disabled]="nearSomePlace" block (click)="visitPlace()">
+  <button ion-button [disabled]="!nearSomePlace" block (click)="visitPlace()">
       Visitar
   </button>
   
