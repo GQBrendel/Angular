@@ -10,6 +10,7 @@ import { AuthProvider } from '../../providers/auth/auth';
   templateUrl: 'home.html',
 })
 export class HomePage {
+
   public myPerson = {};
   public nearSomePlace: boolean;
 
@@ -26,9 +27,6 @@ export class HomePage {
   {
       this.navCtrl.push('LocationPage');
   }
-  checkDistance()
-  {
 
-  }
 
 }

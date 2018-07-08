@@ -18,6 +18,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { Geolocation } from '@ionic-native/geolocation'; 
 import { NativeGeocoderForwardResult, NativeGeocoder } from '@ionic-native/native-geocoder';
+import { LocationProvider } from '../providers/location/location';
 
 // AF2 Settings
 const firebaseConfig = {
@@ -56,7 +57,8 @@ const firebaseConfig = {
       NativeGeocoder,
       {provide: ErrorHandler, useClass: IonicErrorHandler},
       AuthProvider,
-      Camera
+      LocationProvider,
+      Camera,
     ]
 })
 export class AppModule {}

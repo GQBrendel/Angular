@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import leaflet from 'leaflet';
 import { NativeGeocoder, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 
+import { LocationProvider } from '../../providers/location/location';
 
 @IonicPage()
 @Component({
@@ -19,6 +20,7 @@ export class MapsPage {
     this.loadmap();
     this.addCustomMarks("Viamão");
     this.populateMap();
+    this.getCurrentLocation();
   }
   loadmap() {
     this.map = leaflet.map("map").fitWorld();
@@ -40,15 +42,29 @@ export class MapsPage {
         alert(err.message);
     }) 
   }
-
-  getCurrentLocation()
+  public getCurrentLocation()
   {
-    
-  }
+    this.map.locate().on('locationfound', (e) =>{
+        console.log("Latitude do E " + e.latitude);
+        console.log("Longitude do E " + e.longitude);
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-    private alertCtrl: AlertController,private nativeGeocoder: NativeGeocoder) {
+        this.locationData.latitudeSingleton = e.latitude.toString();
+        this.locationData.longitudeSingleton = e.longitude.toString();
+        
+        console.log("Latitude do Singleton " +  this.locationData.latitudeSingleton);
+        console.log("Longitude do Singleton " +  this.locationData.longitudeSingleton);
+
+
+
+        let calculatedDistance = this.getDistanceFromLatLonInKm(this.locationData.latitudeSingleton, this.locationData.longitudeSingleton,
+          -30.031867, -51.230465);
+
+        console.log ("Distancia da minha posição para Theatro São Pedro eh de " + calculatedDistance + "km.");
+      })
   }
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    private alertCtrl: AlertController,private nativeGeocoder: NativeGeocoder,
+    public locationData: LocationProvider) { }
 
   addMarker() {
     let prompt = this.alertCtrl.create({
@@ -105,16 +121,7 @@ export class MapsPage {
   .catch((error: any) => console.log(error));
   }
   populateMap()
-  {    
-    /*let place = {
-
-      name: <string> 'Theatro São Pedro',
-      id: <number> null,
-      latitude: <number> -30.031867,
-      longitude: <number> -51.230465,
-      marker: <string> leaflet.marker([-30.031867, -51.230465]),
-    };*/
-
+  {   
     let markerSaoPedro = leaflet.marker(['-30.031867', '-51.230465']).addTo(this.map);
     markerSaoPedro.bindPopup("<b>Theatro São Pedro</b><br>Place Description.").on('click', () => {
       leaflet.openPopup();
@@ -147,6 +154,26 @@ export class MapsPage {
     this.map.addLayer(markerGroup);
     })
   .catch((error: any) => console.log(error));
+  }
+
+
+  //Source: https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
+  getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+    var R = 6371; // Radius of the earth in km
+    var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
+    var dLon = this.deg2rad(lon2-lon1); 
+    var a = 
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
+      Math.sin(dLon/2) * Math.sin(dLon/2)
+      ; 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c; // Distance in km
+    return d;
+  }
+  
+  deg2rad(deg) {
+    return deg * (Math.PI/180)
   }
 
 }
