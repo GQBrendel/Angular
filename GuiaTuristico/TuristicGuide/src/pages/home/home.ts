@@ -25,19 +25,29 @@ export class HomePage {
      personRef.on('value', personSnapshot => {
       this.myPerson = personSnapshot.val();
       if(this.myPerson.avatarURL != null){
-        document.getElementById('profileAvatar').setAttribute('src', this.myPerson.avatarURL.i);
+        document.getElementById('homeAvatar').setAttribute('src', this.myPerson.avatarURL.i);
       }
     });
   }
 
   ionViewDidEnter() {
     this.checkIfNearLocation();
+
     const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.locationData.locationFirebaseName);
     placeRef.on('value', personSnapshot => {
       this.myPlace = personSnapshot.val();
     
       document.getElementById('placeImage').setAttribute('src', this.myPlace.urlImagem);
     });
+
+    const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);
+     personRef.on('value', personSnapshot => {
+      this.myPerson = personSnapshot.val();
+      if(this.myPerson.avatarURL != null){
+        document.getElementById('homeAvatar').setAttribute('src', this.myPerson.avatarURL.i);
+      }
+    });
+
   }
   checkIfNearLocation()
   {
