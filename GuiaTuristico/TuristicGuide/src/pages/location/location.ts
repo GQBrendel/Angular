@@ -27,7 +27,7 @@ export class LocationPage {
     });
   }
   openRegisterPage()
-  {
-    
+  {    
+    this.navCtrl.push('VisitRegisterPage');
   }
 }

@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>visitRegister</ion-title>
+  <ion-navbar color = "primary">
+    <ion-title>Registrar Visita</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,4 +15,19 @@
 
 <ion-content padding>
 
+  <br>
+    <button ion-button block (click)="addImage()">
+        Adicionar uma imagem
+    </button>  
+    <br>
+
+    <ion-item>
+      <ion-textarea placeholder="Conte como foi sua visita."></ion-textarea>
+    </ion-item>
+    <br>
+    <ion-input margin-left = auto type = "number" placeholder="Sua Nota"></ion-input>
+    <br>
+    <button ion-button block (click)="endRegister()">
+        Finalizar
+    </button> 
 </ion-content>
