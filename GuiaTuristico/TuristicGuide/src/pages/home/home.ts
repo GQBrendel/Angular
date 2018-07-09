@@ -15,6 +15,7 @@ export class HomePage {
   public myPerson = {};
   public nearSomePlace: boolean;
   public messageToUser: string;
+  public imageHidder: number;
 
   constructor(public navCtrl: NavController, public authData: AuthProvider,  public locationData: LocationProvider,public navParams: NavParams){}
 
@@ -35,10 +36,13 @@ export class HomePage {
     if(this.nearSomePlace)
     {
       this.messageToUser = "Pertinho de " + this.locationData.closeLocationName;
+      document.getElementById('placeImage').style.display = "inline";
     }
     else
     {
+      this.imageHidder = 0;
       this.messageToUser = "Você não está próximo a nenhuma localidade, visite o mapa para encontrar um ponto turístico próximo à você."
+      document.getElementById('placeImage').style.display = "none";
     }
   }
 
