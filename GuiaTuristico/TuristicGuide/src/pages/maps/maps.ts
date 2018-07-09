@@ -71,10 +71,11 @@ export class MapsPage {
     let calculatedDistance = 100000;
 
 
-    if((this.getDistanceFromLatLonInKm(lat, long, -30.031867, -51.230465)) < 0.4) //Perto do Theatro São Pedro
+    if((this.getDistanceFromLatLonInKm(lat, long, -30.031867, -51.230465)) < 0.8) //Perto do Theatro São Pedro
     {
       this.locationData.isCloseToLocation = true;
       this.locationData.closeLocationName = "Theatro São Pedro";
+      this.locationData.locationFirebaseName = "TheatroSaoPedro";
     }
     else if((this.getDistanceFromLatLonInKm(lat, long, -30.027154, -51.175086)) < 0.4) //Perto da Sinos
     {

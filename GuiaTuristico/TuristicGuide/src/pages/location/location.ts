@@ -11,16 +11,19 @@ import firebase from 'firebase';
 })
 export class LocationPage {
 
-  public myPlace = {};
+  public myPlace = {nomeDoLocal : 'Boscou' };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public locationData : LocationProvider) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.locationData.locationFirebaseName);
     placeRef.on('value', personSnapshot => {
       this.myPlace = personSnapshot.val();
     });
+
+    console.log("Carregou " + this.myPlace.nomeDoLocal);
+
   }
 
 }
