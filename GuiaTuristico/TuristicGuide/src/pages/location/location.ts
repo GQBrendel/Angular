@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the LocationPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { LocationProvider } from '../../providers/location/location';
+import firebase from 'firebase';
 
 @IonicPage()
 @Component({
@@ -15,11 +11,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LocationPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public myPlace = {};
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public locationData : LocationProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LocationPage');
+    const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.locationData.locationFirebaseName);
+    placeRef.on('value', personSnapshot => {
+      this.myPlace = personSnapshot.val();
+    });
   }
 
 }

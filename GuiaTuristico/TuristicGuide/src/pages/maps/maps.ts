@@ -23,7 +23,7 @@ export class MapsPage {
   {
     this.addCustomMarks("Viamão");
     this.populateMap();
-    this.getCurrentLocation();
+    this.checkIfNearLocation();
   }
   loadmap() {
     this.map = leaflet.map("map").fitWorld();
@@ -57,13 +57,41 @@ export class MapsPage {
         console.log("Latitude do Singleton " +  this.locationData.latitudeSingleton);
         console.log("Longitude do Singleton " +  this.locationData.longitudeSingleton);
 
-
-
         let calculatedDistance = this.getDistanceFromLatLonInKm(this.locationData.latitudeSingleton, this.locationData.longitudeSingleton,
           -30.031867, -51.230465);
 
         console.log ("Distancia da minha posição para Theatro São Pedro eh de " + calculatedDistance + "km.");
       })
+  }
+  checkIfNearLocation()
+  {
+    this.getCurrentLocation();
+    let lat = this.locationData.latitudeSingleton;
+    let long = this.locationData.longitudeSingleton;
+    let calculatedDistance = 100000;
+
+
+    if((this.getDistanceFromLatLonInKm(lat, long, -30.031867, -51.230465)) < 0.4) //Perto do Theatro São Pedro
+    {
+      this.locationData.isCloseToLocation = true;
+      this.locationData.closeLocationName = "Theatro São Pedro";
+    }
+    else if((this.getDistanceFromLatLonInKm(lat, long, -30.027154, -51.175086)) < 0.4) //Perto da Sinos
+    {
+      this.locationData.isCloseToLocation = true;
+      this.locationData.closeLocationName = "Unisinos";
+    }
+    else if((this.getDistanceFromLatLonInKm(lat, long, -30.031012, -51.234195)) < 0.4) //Perto da Casa de Cultura
+    {
+      this.locationData.isCloseToLocation = true;
+      this.locationData.closeLocationName = "Casa de Cultura";
+    }
+    else
+    {
+      this.locationData.isCloseToLocation = true;
+      this.locationData.closeLocationName = "The Place That Never Was";  
+    }
+
   }
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     private alertCtrl: AlertController,private nativeGeocoder: NativeGeocoder,
@@ -125,6 +153,11 @@ export class MapsPage {
   }
   populateMap()
   {   
+    
+    this.getCurrentLocation();
+    let lat = this.locationData.latitudeSingleton;
+    let long = this.locationData.longitudeSingleton;
+
     let markerSaoPedro = leaflet.marker(['-30.031867', '-51.230465']).addTo(this.map);
     markerSaoPedro.bindPopup("<b>Theatro São Pedro</b><br>Place Description.").on('click', () => {
       leaflet.openPopup();
@@ -140,7 +173,11 @@ export class MapsPage {
       leaflet.openPopup();
     })
     let CDC = leaflet.marker([-30.031012,-51.234195]).addTo(this.map);
-    CDC.bindPopup("<b>Casa de Cultura Mário Quintana</b><br>Place Description.").on('click', () => {
+    CDC.bindPopup("<b>Casa de Cultura Mário Quintana</b><br>Place Description + this.getDistanceFromLatLonInKm(lat, long, -30.031012, -51.234195").on('click', () => {
+      leaflet.openPopup();
+    })
+    let unisinos = leaflet.marker([-30.027154,-51.175086]).addTo(this.map);
+    unisinos.bindPopup("<b>Unisinos Porto Alegre</b><br>Place Description.").on('click', () => {
       leaflet.openPopup();
     })
   }

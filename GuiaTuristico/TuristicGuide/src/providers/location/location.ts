@@ -16,7 +16,8 @@ export class LocationProvider {
   }  
   public latitudeSingleton:any = '';
   public longitudeSingleton:any = '';
-  public isCloseToLocation : boolean = true;
+  public isCloseToLocation : boolean = false;
   public closeLocationName : string = 'Woody';
+  public locationFirebaseName: string = '';
 
 }

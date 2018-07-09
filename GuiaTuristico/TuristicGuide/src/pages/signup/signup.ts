@@ -115,5 +115,22 @@ export class SignupPage {
       email,
       preMail,
     })
+
+    let nomeDoLocal = "Theatro São Pedro";
+    let descricao = "Eh um Teatro";
+    let urlImagem = "URL";
+    let likes = 0;
+    let locationFirebaseName = 'TheatroSaoPedro'
+
+
+
+    const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + locationFirebaseName);
+    placeRef.set({
+      nomeDoLocal,
+      descricao,
+      urlImagem,
+      likes,
+      locationFirebaseName
+    })
   }
 }
