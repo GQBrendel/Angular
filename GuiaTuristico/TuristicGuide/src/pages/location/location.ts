@@ -26,4 +26,8 @@ export class LocationPage {
       document.getElementById('placeImage1').setAttribute('src', this.url);
     });
   }
+  openRegisterPage()
+  {
+    
+  }
 }

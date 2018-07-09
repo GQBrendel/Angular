@@ -20,8 +20,7 @@
     Número de Likes {{ myPlace?.likes }} <br>
     Url da Imagem {{ myPlace?.urlimagem }} <br>
    
-    <ion-card>
-
+    <ion-card id = "visitor1">
         <ion-item>
           <ion-avatar item-start>
             <img src="img/marty-avatar.png">
@@ -30,9 +29,6 @@
           <p>09/07/2018</p>
         </ion-item>
         <img id = "placeImage1"/>
-      
-        <!-- <img src = "https://firebasestorage.googleapis.com/v0/b/app-turistando.appspot.com/o/images%2Fplaces%2FTheatro%20S%C3%A3o%20Pedro.jpg?alt=media&token=77c2b1ef-c01f-4934-a3b4-651efd42a2b4"/> -->
-   
         <ion-card-content>
           <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
         </ion-card-content>
@@ -56,9 +52,12 @@
             </ion-note>
           </ion-col>
         </ion-row>
-      
       </ion-card>
 
-
+      <!-- Registro de Nova Visita -->
+    
+      <button ion-button block (click)="openRegisterPage()">
+          Registrar
+      </button>    
 
   </ion-content>
