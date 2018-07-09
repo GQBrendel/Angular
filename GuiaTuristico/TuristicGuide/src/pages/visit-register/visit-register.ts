@@ -17,7 +17,8 @@ import firebase from 'firebase';
 })
 export class VisitRegisterPage {
   public myPlace = {nomeDoLocal : 'Placeholder', urlImagem : 'empty'};
-
+  public visitorReport : string;
+  public visitorScore : number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public locationData : LocationProvider) {
   }
@@ -30,6 +31,13 @@ export class VisitRegisterPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VisitRegisterPage');
+  }
+  endRegister(visitorReport: string, visitorScore: number): void {
+    const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.locationData.locationFirebaseName);
+    placeRef.update({
+      visitorReport,
+      visitorScore
+    })    
   }
 
 }
