@@ -19,12 +19,15 @@
   </ion-item>
   <br>
   <img height="250" width="300" src="assets/imgs/icon.png"  margin-left= auto  margin-right= auto>
-        <h3>
-          {{ messageToUser }}
-        </h3>
-            <img src="http://www.disneyinfinityfans.com/download/file.php?avatar=64_1383940647.png">
+      <br><br><br>
+        <div text-center>
+            <h3 margin-left = auto>
+                {{ messageToUser }}
+              </h3>
+            <img src="http://www.disneyinfinityfans.com/download/file.php?avatar=64_1383940647.png"/>
+        </div>
 
-   
+             
   <br>
   <button ion-button [disabled]="!nearSomePlace" block (click)="visitPlace()">
       Visitar
