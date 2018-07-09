@@ -7,17 +7,18 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Profile</ion-title>
+    <ion-title>{{ myPerson?.usernameValue }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 <ion-content padding color="primary">
     <ion-item>
         <ion-avatar item-start>
-          <img src="http://www.disneyinfinityfans.com/download/file.php?avatar=64_1383940647.png">
+          <img id ='profileAvatar' src = "http://kiwilandingpad.com/wp-content/uploads/2014/05/avatar-placeholder.png"/>
         </ion-avatar>
         <h1>Profile Name {{ myPerson?.usernameValue }} </h1>
-        <p>profile description</p>
+        <!-- <p>profile description</p> -->
+        <ion-input type="text" [(ngModel)]="profileDescription" [placeholder] = "myPerson?.profileDescription"></ion-input>
       </ion-item>
       <br>
   <ion-list>
@@ -25,24 +26,16 @@
       <ion-label fixed>User Name</ion-label>
       <ion-input type="text" [(ngModel)]="firstName" [placeholder] = "myPerson?.usernameValue"></ion-input>
     </ion-item>
-
-    <ion-item>
-      <ion-label fixed>Last Name</ion-label>
-      <ion-input type="text" [(ngModel)]="lastName"></ion-input>
-    </ion-item>
   </ion-list>
+  <p>URL do AVATAR {{myPerson?.avatarURL}}</p>
 
-
-  <button ion-button block (click)="createPerson(firstName, lastName)">
-    Create Person
-  </button>
-  <p>
-    Welcome to this app {{ myPerson?.usernameValue }} 
-    I can see that your e-mail is {{ myPerson?.email }} and this is awesome
-
-  </p>
+ 
 
 <button ion-button (click)="capture()" >Take Photo</button>
 <img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
 <button ion-button (click)="upload()" *ngIf="captureDataUrl">Upload to Firebase!</button>
+
+<button ion-button block (click)="updatePerson(firstName, profileDescription)">
+    Update Profile
+  </button>
 </ion-content>

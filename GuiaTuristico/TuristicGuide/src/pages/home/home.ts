@@ -12,7 +12,7 @@ import { LocationProvider } from '../../providers/location/location';
 })
 export class HomePage {
 
-  public myPerson = {};
+  public myPerson = {avatarURL : {i : ''}};
   public myPlace = { urlImagem : ''};
   public nearSomePlace: boolean;
   public messageToUser: string;
@@ -24,6 +24,9 @@ export class HomePage {
     const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);
      personRef.on('value', personSnapshot => {
       this.myPerson = personSnapshot.val();
+      if(this.myPerson.avatarURL != null){
+        document.getElementById('profileAvatar').setAttribute('src', this.myPerson.avatarURL.i);
+      }
     });
   }
 

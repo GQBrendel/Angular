@@ -20,7 +20,9 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 export class ProfilePage {
 
-  public myPerson = {};
+  public myPerson = {avatarURL : {i : ''}};
+  public avatarURL;
+
   
   constructor(private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public authData: AuthProvider) {
     var metadata = {
@@ -32,7 +34,16 @@ export class ProfilePage {
     const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);
      personRef.on('value', personSnapshot => {
       this.myPerson = personSnapshot.val();
+      
+
+      if(this.myPerson.avatarURL != null){
+        document.getElementById('profileAvatar').setAttribute('src', this.myPerson.avatarURL.i);
+      }
     });
+  }
+  ionViewDidEnter()
+  {
+    document.getElementById('profileAvatar').setAttribute('src', this.myPerson.avatarURL.i);
   }
  
   captureDataUrl: string;
@@ -61,25 +72,38 @@ export class ProfilePage {
 
     imageRef.putString(this.captureDataUrl, storage.StringFormat.DATA_URL).then((snapshot)=> {
       // Do something here when the data is succesfully uploaded!
+      
+        this.avatarURL = imageRef.getDownloadURL();
+        
+      
      });
   }
-  createPerson(firstName: string, lastName: string): void {
+  createPerson(firstName: string, profileDescription: string): void {
     const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);
     personRef.set({
       firstName,
-      lastName
+      profileDescription
     })
   }
   removePerson(): void {
     const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);
     personRef.remove()
   }
-  updatePerson(usernameValue: string, lastName: string): void {
+  updatePerson(usernameValue: string, profileDescription: string): void {
+    let avatarURL = this.avatarURL;
+    if(avatarURL == null && this.myPerson.avatarURL.i == null)
+    {
+      avatarURL = "AvatarNotSet";
+    }
+    if (profileDescription == null)
+    {
+      profileDescription = "Descrição Pessoal";
+    }
     const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);
     personRef.update({
       usernameValue,
-      lastName
+      profileDescription,
+      avatarURL
     })    
   }
-
 }
