@@ -1,4 +1,4 @@
-<!--
+/<!--
   Generated template for the LocationPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color = "primary">
-    <ion-title>LOCATION</ion-title>
+    <ion-title>{{ myPlace?.nomeDoLocal }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,5 +15,50 @@
 
 <ion-content padding>
 
-    Welcome to this app {{ myPlace?.nomeDoLocal }} 
-</ion-content>
+    Local: {{ myPlace?.nomeDoLocal }} <br>
+    Descrição: {{ myPlace?.descricao }} <br>
+    Número de Likes {{ myPlace?.likes }} <br>
+    Url da Imagem {{ myPlace?.urlimagem }} <br>
+   
+    <ion-card>
+
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="img/marty-avatar.png">
+          </ion-avatar>
+          <h2>Marty McFly</h2>
+          <p>09/07/2018</p>
+        </ion-item>
+        <img id = "placeImage1"/>
+      
+        <!-- <img src = "https://firebasestorage.googleapis.com/v0/b/app-turistando.appspot.com/o/images%2Fplaces%2FTheatro%20S%C3%A3o%20Pedro.jpg?alt=media&token=77c2b1ef-c01f-4934-a3b4-651efd42a2b4"/> -->
+   
+        <ion-card-content>
+          <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+        </ion-card-content>
+      
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-start clear small>
+              <ion-icon name="thumbs-up"></ion-icon>
+              <div>{{myPlace?.likes}} Likes</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-start clear small>
+              <ion-icon name="text"></ion-icon>
+              <div>4 Comments</div>
+            </button>
+          </ion-col>
+          <ion-col center text-center>
+            <ion-note>
+              11h ago
+            </ion-note>
+          </ion-col>
+        </ion-row>
+      
+      </ion-card>
+
+
+
+  </ion-content>

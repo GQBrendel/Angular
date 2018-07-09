@@ -13,6 +13,7 @@ import { LocationProvider } from '../../providers/location/location';
 export class HomePage {
 
   public myPerson = {};
+  public myPlace = {};
   public nearSomePlace: boolean;
   public messageToUser: string;
   public imageHidder: number;
@@ -25,10 +26,13 @@ export class HomePage {
       this.myPerson = personSnapshot.val();
     });
   }
-  
-  ionViewDidEnter()
-  {
+
+  ionViewDidEnter() {
     this.checkIfNearLocation();
+    const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.locationData.locationFirebaseName);
+    placeRef.on('value', personSnapshot => {
+      this.myPlace = personSnapshot.val();
+    });
   }
   checkIfNearLocation()
   {
