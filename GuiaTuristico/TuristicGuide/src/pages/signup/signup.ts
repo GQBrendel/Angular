@@ -118,7 +118,6 @@ export class SignupPage {
     let nomeDoLocal = "Unisinos Porto Alegre";
     let descricao = "Nossa Universidade";
     let urlImagem = "URL";
-    let likes = 0;
     let locationFirebaseName = 'Unisinos'
 
 
@@ -128,7 +127,6 @@ export class SignupPage {
       nomeDoLocal,
       descricao,
       urlImagem,
-      likes,
       locationFirebaseName
     })
   }

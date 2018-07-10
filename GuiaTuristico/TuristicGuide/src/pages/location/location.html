@@ -23,7 +23,7 @@
     <ion-card  id = "visitor1" style="display: none;" >
         <ion-item>
           <ion-avatar item-start>
-            <img id = "visitor1Avatar"  src="img/marty-avatar.png">
+            <img id = "visitor1Avatar"  src="">
           </ion-avatar>
           <h2>{{ visitor1_Name }}</h2>
           <p>09/07/2018</p>
@@ -54,7 +54,78 @@
         </ion-row>
       </ion-card>
 
-      <!-- Registro de Nova Visita -->
+      <!-- Visita 02 -->
+
+      <ion-card  id = "visitor2" style="display: none;" >
+          <ion-item>
+            <ion-avatar item-start>
+              <img id = "visitor2Avatar"  src="">
+            </ion-avatar>
+            <h2>{{ visitor2_Name }}</h2>
+            <p>09/07/2018</p>
+          </ion-item>
+          <img id = "placeImage2"/>
+          <ion-card-content>
+            <p>{{ visitor2_Report }}</p>
+          </ion-card-content>
+        
+          <ion-row>
+            <ion-col>
+              <button ion-button icon-start clear small>
+                <ion-icon name="thumbs-up"></ion-icon>
+                <div>{{ visitor2_Likes }} Likes</div>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button icon-start clear small>
+                <ion-icon name="text"></ion-icon>
+                <div>4 Comments</div>
+              </button>
+            </ion-col>
+            <ion-col center text-center>
+              <ion-note>
+                11h ago
+              </ion-note>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+
+
+              <!-- Visita 03 -->
+
+      <ion-card  id = "visitor3" style="display: none;" >
+          <ion-item>
+            <ion-avatar item-start>
+              <img id = "visitor3Avatar"  src="">
+            </ion-avatar>
+            <h2>{{ visitor3_Name }}</h2>
+            <p>09/07/2018</p>
+          </ion-item>
+          <img id = "placeImage3"/>
+          <ion-card-content>
+            <p>{{ visitor1_Report }}</p>
+          </ion-card-content>
+        
+          <ion-row>
+            <ion-col>
+              <button ion-button icon-start clear small>
+                <ion-icon name="thumbs-up"></ion-icon>
+                <div>{{ visitor3_Likes }} Likes</div>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button icon-start clear small>
+                <ion-icon name="text"></ion-icon>
+                <div>4 Comments</div>
+              </button>
+            </ion-col>
+            <ion-col center text-center>
+              <ion-note>
+                11h ago
+              </ion-note>
+            </ion-col>
+          </ion-row>
+        </ion-card>
     
       <button ion-button block (click)="openRegisterPage()">
           Registrar
