@@ -19,10 +19,12 @@ export class PersistentData {
   public isCloseToLocation : boolean = false;
   public locationFirebaseName: string = '';
   public totalVisits: number = 0;
+  
 
   public usernameValue: string = 'Sucrilhos';
   public userIdentifier: string = 'NOT DEFINED';
   public userAvatarURL: string = 'NOT DEFINED';
+  public postLikes: number = 0;
 
 
 }

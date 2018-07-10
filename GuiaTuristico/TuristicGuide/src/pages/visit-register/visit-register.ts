@@ -44,13 +44,15 @@ export class VisitRegisterPage {
     let visitorAvatarUrl = this.persistentData.userAvatarURL;
     this.totalVisits += 1;
     let totalVisits = this.totalVisits;
+    let likes = 0;
     const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.persistentData.locationFirebaseName + '/Visitor' + this.totalVisits);
     placeRef.update({
       visitorName,
       visitorReport,
       visitorScore,
       visitorImgURL,
-      visitorAvatarUrl
+      visitorAvatarUrl,
+      likes
     })
 
     const placeRefUpdateVisits: firebase.database.Reference = firebase.database().ref('Places/' + this.persistentData.locationFirebaseName);
