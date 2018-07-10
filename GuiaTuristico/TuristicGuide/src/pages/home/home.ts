@@ -59,6 +59,7 @@ export class HomePage {
          this.persistentData.usernameValue = this.myPerson.usernameValue;
          
          this.persistentData.userIdentifier = this.myPerson.preMail;
+         this.persistentData.userAvatarURL = this.myPerson.avatarURL.i;
         console.log("User Name Value: " + this.persistentData.usernameValue);
         
         console.log("User Identifier:  " + this.persistentData.userIdentifier );

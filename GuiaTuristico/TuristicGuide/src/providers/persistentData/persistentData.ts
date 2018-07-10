@@ -22,7 +22,7 @@ export class PersistentData {
 
   public usernameValue: string = 'Sucrilhos';
   public userIdentifier: string = 'NOT DEFINED';
-  public userAvatarURL: string = 'NOT Defined'
+  public userAvatarURL: string = 'NOT DEFINED';
 
 
 }

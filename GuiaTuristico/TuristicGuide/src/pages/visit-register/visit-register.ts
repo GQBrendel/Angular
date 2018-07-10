@@ -41,6 +41,7 @@ export class VisitRegisterPage {
   endRegister(visitorReport: string, visitorScore: number): void {
     let visitorImgURL : string = 'http://www.monalisadepijamas.com.br/wp-content/uploads/2011/08/BareMarW.jpg';
     let visitorName = this.persistentData.usernameValue;
+    let visitorAvatarUrl = this.persistentData.userAvatarURL;
     this.totalVisits += 1;
     let totalVisits = this.totalVisits;
     const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.persistentData.locationFirebaseName + '/Visitor' + this.totalVisits);
