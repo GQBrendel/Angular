@@ -37,7 +37,15 @@ export class HomePage {
     placeRef.on('value', personSnapshot => {
       this.myPlace = personSnapshot.val();
     
-      document.getElementById('placeImage').setAttribute('src', this.myPlace.urlImagem);
+      if(this.myPlace != null)
+      {
+        document.getElementById('placeImage').setAttribute('src', this.myPlace.urlImagem);
+      }
+      else
+      {
+        console.log("URL da imagem do lugar não foi carregada do Firebase");
+      }
+
     });
 
     const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);
@@ -54,7 +62,7 @@ export class HomePage {
     this.nearSomePlace = this.locationData.isCloseToLocation;
     if(this.nearSomePlace)
     {
-      this.messageToUser = "Pertinho de " + this.locationData.closeLocationName;
+      this.messageToUser = "Pertinho de " + this.locationData.locationFirebaseName;
       document.getElementById('placeImage').style.display = "inline";
     }
     else

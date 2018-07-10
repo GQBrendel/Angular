@@ -6,13 +6,6 @@ import firebase from 'firebase';
 import { AuthProvider } from '../../providers/auth/auth';
 
 
-/**
- * Generated class for the ProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-profile',
@@ -43,7 +36,11 @@ export class ProfilePage {
   }
   ionViewDidEnter()
   {
-    document.getElementById('profileAvatar').setAttribute('src', this.myPerson.avatarURL.i);
+     document.getElementById('profileAvatar').setAttribute('src', this.myPerson.avatarURL.i);
+     console.log("My avatar URL sem i" + JSON.stringify(this.myPerson.avatarURL));
+    console.log("My avatar URL com i " + JSON.stringify(this.myPerson.avatarURL.i));
+    
+    console.log("My avatar URL com i sem stringify" + this.myPerson.avatarURL.i);
   }
  
   captureDataUrl: string;

@@ -14,6 +14,7 @@ export class MapsPage {
   
   @ViewChild('map') mapContainer: ElementRef;
   map: any;
+  dontplaceSecondMark: boolean = false;
 
   ionViewDidLoad()
   {    
@@ -35,12 +36,18 @@ export class MapsPage {
       setView: true,
       maxZoom: 10
     }).on('locationfound', (e) => {
-      let markerGroup = leaflet.featureGroup();
-      let marker: any = leaflet.marker([e.latitude, e.longitude]).on('click', () => {
-        alert('Your Location');
-      })
-      markerGroup.addLayer(marker);
-      this.map.addLayer(markerGroup);
+
+      if(!this.dontplaceSecondMark)
+      {
+        this.dontplaceSecondMark = true;
+        let markerGroup = leaflet.featureGroup();
+        let marker: any = leaflet.marker([e.latitude, e.longitude]).on('click', () => {
+          alert('Your Location');
+        })
+        markerGroup.addLayer(marker);
+        this.map.addLayer(markerGroup);
+      }
+    
       }).on('locationerror', (err) => {
         alert(err.message);
     }) 
@@ -58,9 +65,9 @@ export class MapsPage {
         console.log("Longitude do Singleton " +  this.locationData.longitudeSingleton);
 
         let calculatedDistance = this.getDistanceFromLatLonInKm(this.locationData.latitudeSingleton, this.locationData.longitudeSingleton,
-          -30.031867, -51.230465);
+          -30.073605, -51.100933);
 
-        console.log ("Distancia da minha posição para Theatro São Pedro eh de " + calculatedDistance + "km.");
+        console.log ("Distancia da minha posição para Turismo em Viamão eh de " + calculatedDistance + "km.");
       })
   }
   checkIfNearLocation()
@@ -74,23 +81,28 @@ export class MapsPage {
     if((this.getDistanceFromLatLonInKm(lat, long, -30.031867, -51.230465)) < 0.8) //Perto do Theatro São Pedro
     {
       this.locationData.isCloseToLocation = true;
-      this.locationData.closeLocationName = "Theatro São Pedro";
-      this.locationData.locationFirebaseName = "TheatroSaoPedro";
+     // this.locationData.closeLocationName = "Theatro São Pedro";
+     this.locationData.locationFirebaseName = "TheatroSaoPedro";
     }
     else if((this.getDistanceFromLatLonInKm(lat, long, -30.027154, -51.175086)) < 0.4) //Perto da Sinos
     {
       this.locationData.isCloseToLocation = true;
-      this.locationData.closeLocationName = "Unisinos";
+      this.locationData.locationFirebaseName = "Unisinos";
     }
     else if((this.getDistanceFromLatLonInKm(lat, long, -30.031012, -51.234195)) < 0.4) //Perto da Casa de Cultura
     {
       this.locationData.isCloseToLocation = true;
-      this.locationData.closeLocationName = "Casa de Cultura";
+      this.locationData.locationFirebaseName = "Casa de Cultura";
+    }
+    else if((this.getDistanceFromLatLonInKm(lat, long, -30.073605, -51.100933)) < 2) //Perto da Casa de Cultura
+    {
+      this.locationData.isCloseToLocation = true;
+      this.locationData.locationFirebaseName = "Viamao";
     }
     else
     {
       this.locationData.isCloseToLocation = true;
-      this.locationData.closeLocationName = "The Place That Never Was";  
+      this.locationData.locationFirebaseName = "The Place That Never Was";  
     }
 
   }
@@ -179,6 +191,10 @@ export class MapsPage {
     })
     let unisinos = leaflet.marker([-30.027154,-51.175086]).addTo(this.map);
     unisinos.bindPopup("<b>Unisinos Porto Alegre</b><br>Place Description.").on('click', () => {
+      leaflet.openPopup();
+    })
+    let viamao = leaflet.marker([-30.073605, -51.100933]).addTo(this.map);
+    unisinos.bindPopup("<b>Viamão</b><br>Desenvolvimento é aqui.").on('click', () => {
       leaflet.openPopup();
     })
   }

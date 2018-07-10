@@ -116,11 +116,11 @@ export class SignupPage {
       preMail,
     })
 
-    let nomeDoLocal = "Theatro São Pedro";
-    let descricao = "Eh um Teatro";
+    let nomeDoLocal = "Unisinos Porto Alegre";
+    let descricao = "Nossa Universidade";
     let urlImagem = "URL";
     let likes = 0;
-    let locationFirebaseName = 'TheatroSaoPedro'
+    let locationFirebaseName = 'Unisinos'
 
 
 
