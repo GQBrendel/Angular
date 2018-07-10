@@ -14,6 +14,8 @@ export class LocationPage {
   public myPlace = {likes: 0, visitorReport: '', visitorImgURL: '', visitorName: '', visitorAvatarUrl: '', totalVisits: 0, nomeDoLocal : 'Placeholder', urlImagem : 'empty'};
   public url;
 
+  public placeName: string;
+
   public visitor1_Name: string;
   public visitor2_Name: string;
   public visitor3_Name: string;
@@ -40,6 +42,7 @@ export class LocationPage {
       this.persistentData.totalVisits = this.myPlace.totalVisits;
     });
 
+    this.placeName = this.persistentData.locationFirebaseName;
     this.loadPreviousVisits();
   }
   openRegisterPage()

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color = "primary">
-    <ion-title>{{ myPlace?.nomeDoLocal }}</ion-title>
+    <ion-title>{{ placeName }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,7 +15,7 @@
 
 <ion-content padding>
 
-    Local: {{ myPlace?.nomeDoLocal }} <br>
+    Local: {{ placeName }} <br>
     Descrição: {{ myPlace?.descricao }} <br>
     Número de Likes {{ myPlace?.likes }} <br>
     Url da Imagem {{ myPlace?.urlimagem }} <br>
