@@ -115,21 +115,21 @@ export class SignupPage {
       preMail,
     })
 
-    let nomeDoLocal = "Museu de Arte do Rio Grande do Sul";
-    let descricao = "O Museu de Arte do Rio Grande do Sul Ado Malagoli é um museu brasileiro sediado em Porto Alegre, capital do estado do Rio Grande do Sul, pertencente ao governo estadual. Localiza-se na Praça da Alfândega, no Centro Histórico da cidade.";
-    let urlImagem = "https://gds.portal5g-media.com/contentFiles/system/pictures/2011/10/31084/original/margs-1.jpg";
-    let locationFirebaseName = 'margs'
-    let totalVisits = 0;
+    // let nomeDoLocal = "Museu de Arte do Rio Grande do Sul";
+    // let descricao = "O Museu de Arte do Rio Grande do Sul Ado Malagoli é um museu brasileiro sediado em Porto Alegre, capital do estado do Rio Grande do Sul, pertencente ao governo estadual. Localiza-se na Praça da Alfândega, no Centro Histórico da cidade.";
+    // let urlImagem = "https://gds.portal5g-media.com/contentFiles/system/pictures/2011/10/31084/original/margs-1.jpg";
+    // let locationFirebaseName = 'margs'
+    // let totalVisits = 0;
 
 
 
-    const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + locationFirebaseName);
-    placeRef.set({
-      nomeDoLocal,
-      descricao,
-      urlImagem,
-      locationFirebaseName,
-      totalVisits
-    })
+    // const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + locationFirebaseName);
+    // placeRef.set({
+    //   nomeDoLocal,
+    //   descricao,
+    //   urlImagem,
+    //   locationFirebaseName,
+    //   totalVisits
+    // })
   }
 }

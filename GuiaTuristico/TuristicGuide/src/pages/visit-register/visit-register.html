@@ -20,6 +20,8 @@
         Adicionar uma imagem
     </button>  
     <br>
+    
+<img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
 
     <ion-item>
       <ion-textarea  [(ngModel)]="visitorReport" placeholder="Conte como foi sua visita."></ion-textarea>

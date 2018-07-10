@@ -12,7 +12,7 @@ import { PersistentData } from '../../providers/persistentData/persistentData';
 })
 export class HomePage {
 
-  public myPerson = {preMail: '', usernameValue :'', avatarURL : {i : ''}};
+  public myPerson = {preMail: '', usernameValue :'', avatarURL :  ''};
   public myPlace = { urlImagem : ''};
   public nearSomePlace: boolean;
   public messageToUser: string;
@@ -25,7 +25,7 @@ export class HomePage {
      personRef.on('value', personSnapshot => {
       this.myPerson = personSnapshot.val();
       if(this.myPerson.avatarURL != null){
-        document.getElementById('homeAvatar').setAttribute('src', this.myPerson.avatarURL.i);
+        document.getElementById('homeAvatar').setAttribute('src', this.myPerson.avatarURL);
     
         
       }
@@ -55,12 +55,12 @@ export class HomePage {
      personRef.on('value', personSnapshot => {
       this.myPerson = personSnapshot.val();
       if(this.myPerson.avatarURL != null){
-        document.getElementById('homeAvatar').setAttribute('src', this.myPerson.avatarURL.i);
+        document.getElementById('homeAvatar').setAttribute('src', this.myPerson.avatarURL);
 
          this.persistentData.usernameValue = this.myPerson.usernameValue;
          
          this.persistentData.userIdentifier = this.myPerson.preMail;
-         this.persistentData.userAvatarURL = this.myPerson.avatarURL.i;
+         this.persistentData.userAvatarURL = this.myPerson.avatarURL;
         console.log("User Name Value: " + this.persistentData.usernameValue);
         
         console.log("User Identifier:  " + this.persistentData.userIdentifier );

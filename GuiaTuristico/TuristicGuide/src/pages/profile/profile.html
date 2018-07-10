@@ -30,12 +30,12 @@
 
 
  
+<br>
+<button ion-button block (click)="capture()" >Foto</button>
 
-<button ion-button (click)="capture()" >Take Photo</button>
 <img [src]="captureDataUrl" *ngIf="captureDataUrl"/>
-<button ion-button (click)="upload()" *ngIf="captureDataUrl">Upload to Firebase!</button>
-
+<br>
 <button ion-button block (click)="updatePerson(firstName, profileDescription)">
-    Update Profile
+    Atualizar Perfil
   </button>
 </ion-content>

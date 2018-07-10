@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Loading, LoadingController, AlertController} from 'ionic-angular';
 import {storage } from 'firebase';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import firebase from 'firebase';
@@ -14,15 +14,13 @@ import { PersistentData } from '../../providers/persistentData/persistentData';
 })
 export class ProfilePage {
 
-  public myPerson = {usernameValue: '', avatarURL : {i : ''}};
-  public avatarURL;
+  public myPerson = {usernameValue: '', avatarURL : ''};
+  public avatarURL: any;
 
+  public loading:Loading;
   
   constructor(private camera: Camera, public navCtrl: NavController, public persistentData: PersistentData,
-    public navParams: NavParams, public authData: AuthProvider) {
-    // var metadata = {
-    //   contentType: 'image/jpeg'
-    // }
+    public navParams: NavParams, public authData: AuthProvider,  public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -32,17 +30,15 @@ export class ProfilePage {
       
 
       if(this.myPerson.avatarURL != null){
-        document.getElementById('profileAvatar').setAttribute('src', this.myPerson.avatarURL.i);
+        document.getElementById('profileAvatar').setAttribute('src', this.myPerson.avatarURL);
       }
     });
   }
   ionViewDidEnter()
   {
     try {
-      document.getElementById('profileAvatar').setAttribute('src', this.myPerson.avatarURL.i);
-      console.log("My avatar URL sem i" + JSON.stringify(this.myPerson.avatarURL));
-      console.log("My avatar URL com i " + JSON.stringify(this.myPerson.avatarURL.i));
-      console.log("My avatar URL com i sem stringify" + this.myPerson.avatarURL.i);
+      document.getElementById('profileAvatar').setAttribute('src', this.myPerson.avatarURL);
+ 
       }
       catch(e) {
         console.log(e);
@@ -63,11 +59,21 @@ export class ProfilePage {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
       this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
+      this.upload();
     }, (err) => {
       // Handle error
     });
   }
   upload() {
+    
+    this.loading = this.loadingCtrl.create({
+      dismissOnPageChange: true,
+    });
+    this.loading.present();
+    setTimeout(() => {
+      this.loading.dismiss();
+    }, 1000);
+
     let storageRef = storage().ref();
     // Create a timestamp as filename
     const filename = Math.floor(Date.now() / 1000);
@@ -93,8 +99,8 @@ export class ProfilePage {
   }
   updatePerson(usernameValue: string, profileDescription: string): void {
     
-    let avatarURL = this.avatarURL;
-    if(avatarURL == null && this.myPerson.avatarURL.i == null)
+    let avatarURL = this.avatarURL.i;
+    if(avatarURL == null)
     {
       avatarURL = "AvatarNotSet";
     }
@@ -107,6 +113,15 @@ export class ProfilePage {
       usernameValue,
       profileDescription,
       avatarURL
-    })    
+    })
+
+    this.loading = this.loadingCtrl.create({
+      dismissOnPageChange: true,
+    });
+    this.loading.present();
+    setTimeout(() => {
+      this.loading.dismiss();
+      alert('Perfil Atualizado');
+    }, 3000);
   }
 }
