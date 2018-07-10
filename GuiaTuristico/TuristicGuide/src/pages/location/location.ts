@@ -54,7 +54,45 @@ export class LocationPage {
     {
       return;
     }
-    else if(totalVisits == 1)
+    if(totalVisits > 2) //Se for maior que 02 coloca os atributos do 03
+    {
+      const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.persistentData.locationFirebaseName + '/Visitor3');
+      placeRef.on('value', personSnapshot => {
+        this.myPlace = personSnapshot.val();
+        
+        document.getElementById('visitor3').setAttribute('style', "display: inline-block;");      
+        document.getElementById('visitor3Avatar').setAttribute('src', this.myPlace.visitorAvatarUrl);
+        
+        this.visitor3_Name = this.myPlace.visitorName;
+        
+        this.url = this.myPlace.visitorImgURL;
+        document.getElementById('placeImage3').setAttribute('src', this.url);
+
+        this.visitor3_Likes = this.myPlace.likes;
+
+        this.visitor3_Report = this.myPlace.visitorReport;
+      });
+    }
+    if(totalVisits > 1) //coloca os atributos do 02
+    {
+      const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.persistentData.locationFirebaseName + '/Visitor2');
+      placeRef.on('value', personSnapshot => {
+        this.myPlace = personSnapshot.val();
+        
+        document.getElementById('visitor2').setAttribute('style', "display: inline-block;");      
+        document.getElementById('visitor2Avatar').setAttribute('src', this.myPlace.visitorAvatarUrl);
+        
+        this.visitor2_Name = this.myPlace.visitorName;
+        
+        this.url = this.myPlace.visitorImgURL;
+        document.getElementById('placeImage2').setAttribute('src', this.url);
+
+        this.visitor2_Likes = this.myPlace.likes;
+
+        this.visitor2_Report = this.myPlace.visitorReport;
+      });
+    }
+    if(totalVisits > 0) //Coloca os atricutos do 01
     {
       const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.persistentData.locationFirebaseName + '/Visitor1');
       placeRef.on('value', personSnapshot => {
@@ -72,10 +110,6 @@ export class LocationPage {
 
         this.visitor1_Report = this.myPlace.visitorReport;
       });
-    
-
-
-
     }
 
   }
