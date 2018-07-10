@@ -76,11 +76,8 @@ export class ProfilePage {
     const imageRef = storageRef.child(`images/${filename}.jpg`);
 
     imageRef.putString(this.captureDataUrl, storage.StringFormat.DATA_URL).then((snapshot)=> {
-      // Do something here when the data is succesfully uploaded!
-      
-        this.avatarURL = imageRef.getDownloadURL();
-        
-      
+      // Do something here when the data is succesfully uploaded!      
+        this.avatarURL = imageRef.getDownloadURL();      
      });
   }
   createPerson(firstName: string, profileDescription: string): void {
@@ -95,6 +92,7 @@ export class ProfilePage {
     personRef.remove()
   }
   updatePerson(usernameValue: string, profileDescription: string): void {
+    
     let avatarURL = this.avatarURL;
     if(avatarURL == null && this.myPerson.avatarURL.i == null)
     {

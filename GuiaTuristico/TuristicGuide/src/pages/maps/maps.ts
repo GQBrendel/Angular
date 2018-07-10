@@ -25,7 +25,7 @@ export class MapsPage {
     this.populateMap();
     this.checkIfNearLocation();
     try{
-      if(this.persistentData.latitudeSingleton != null);
+      if(this.persistentData.latitudeSingleton != null)
       this.map.setView([this.persistentData.latitudeSingleton, this.persistentData.longitudeSingleton], 15);
     }
     catch(e){console.log(e)};
