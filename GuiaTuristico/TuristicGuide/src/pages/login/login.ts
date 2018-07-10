@@ -52,7 +52,7 @@ export class LoginPage {
       
       this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password)
       .then( authData => {
-        this.navCtrl.setRoot(TabsPage);
+       this.navCtrl.setRoot(TabsPage);
       }, error => {
         this.loading.dismiss().then( () => {
           let alert = this.alertCtrl.create({

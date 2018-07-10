@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { LocationProvider } from '../../providers/location/location';
+import { PersistentData } from '../../providers/persistentData/persistentData';
 import firebase from 'firebase';
 
 @IonicPage()
@@ -14,11 +14,11 @@ export class LocationPage {
   public myPlace = {nomeDoLocal : 'Placeholder', urlImagem : 'empty'};
   public url;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public locationData : LocationProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public persistentData : PersistentData) {
   }
 
   ionViewDidEnter() {
-    const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.locationData.locationFirebaseName);
+    const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.persistentData.locationFirebaseName);
     placeRef.on('value', personSnapshot => {
       this.myPlace = personSnapshot.val();
       console.log("Carregou " + this.myPlace.nomeDoLocal);

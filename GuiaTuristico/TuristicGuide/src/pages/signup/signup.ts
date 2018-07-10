@@ -20,7 +20,6 @@ export class SignupPage {
   public signupForm: FormGroup;
   public loading: Loading;
   public formIsValid: boolean = true;
- // public userNameValue: string;
   public usernameValue:string;
   public userPreMail:string;
 

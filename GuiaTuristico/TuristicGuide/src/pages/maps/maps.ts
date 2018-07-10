@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import leaflet from 'leaflet';
 import { NativeGeocoder, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 
-import { LocationProvider } from '../../providers/location/location';
+import { PersistentData } from '../../providers/persistentData/persistentData';
 
 @IonicPage()
 @Component({
@@ -58,13 +58,13 @@ export class MapsPage {
         console.log("Latitude do E " + e.latitude);
         console.log("Longitude do E " + e.longitude);
 
-        this.locationData.latitudeSingleton = e.latitude.toString();
-        this.locationData.longitudeSingleton = e.longitude.toString();
+        this.persistentData.latitudeSingleton = e.latitude.toString();
+        this.persistentData.longitudeSingleton = e.longitude.toString();
         
-        console.log("Latitude do Singleton " +  this.locationData.latitudeSingleton);
-        console.log("Longitude do Singleton " +  this.locationData.longitudeSingleton);
+        console.log("Latitude do Singleton " +  this.persistentData.latitudeSingleton);
+        console.log("Longitude do Singleton " +  this.persistentData.longitudeSingleton);
 
-        let calculatedDistance = this.getDistanceFromLatLonInKm(this.locationData.latitudeSingleton, this.locationData.longitudeSingleton,
+        let calculatedDistance = this.getDistanceFromLatLonInKm(this.persistentData.latitudeSingleton, this.persistentData.longitudeSingleton,
           -30.073605, -51.100933);
 
         console.log ("Distancia da minha posição para Turismo em Viamão eh de " + calculatedDistance + "km.");
@@ -73,42 +73,42 @@ export class MapsPage {
   checkIfNearLocation()
   {
     this.getCurrentLocation();
-    let lat = this.locationData.latitudeSingleton;
-    let long = this.locationData.longitudeSingleton;
+    let lat = this.persistentData.latitudeSingleton;
+    let long = this.persistentData.longitudeSingleton;
     let calculatedDistance = 100000;
 
 
     if((this.getDistanceFromLatLonInKm(lat, long, -30.031867, -51.230465)) < 0.8) //Perto do Theatro São Pedro
     {
-      this.locationData.isCloseToLocation = true;
-     // this.locationData.closeLocationName = "Theatro São Pedro";
-     this.locationData.locationFirebaseName = "TheatroSaoPedro";
+      this.persistentData.isCloseToLocation = true;
+     // this.persistentData.closeLocationName = "Theatro São Pedro";
+     this.persistentData.locationFirebaseName = "TheatroSaoPedro";
     }
     else if((this.getDistanceFromLatLonInKm(lat, long, -30.027154, -51.175086)) < 0.4) //Perto da Sinos
     {
-      this.locationData.isCloseToLocation = true;
-      this.locationData.locationFirebaseName = "Unisinos";
+      this.persistentData.isCloseToLocation = true;
+      this.persistentData.locationFirebaseName = "Unisinos";
     }
     else if((this.getDistanceFromLatLonInKm(lat, long, -30.031012, -51.234195)) < 0.4) //Perto da Casa de Cultura
     {
-      this.locationData.isCloseToLocation = true;
-      this.locationData.locationFirebaseName = "Casa de Cultura";
+      this.persistentData.isCloseToLocation = true;
+      this.persistentData.locationFirebaseName = "Casa de Cultura";
     }
     else if((this.getDistanceFromLatLonInKm(lat, long, -30.073605, -51.100933)) < 2) //Perto da Casa de Cultura
     {
-      this.locationData.isCloseToLocation = true;
-      this.locationData.locationFirebaseName = "Viamao";
+      this.persistentData.isCloseToLocation = true;
+      this.persistentData.locationFirebaseName = "Viamao";
     }
     else
     {
-      this.locationData.isCloseToLocation = true;
-      this.locationData.locationFirebaseName = "The Place That Never Was";  
+      this.persistentData.isCloseToLocation = true;
+      this.persistentData.locationFirebaseName = "The Place That Never Was";  
     }
 
   }
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     private alertCtrl: AlertController,private nativeGeocoder: NativeGeocoder,
-    public locationData: LocationProvider) { }
+    public persistentData: PersistentData) { }
 
   addMarker() {
     let prompt = this.alertCtrl.create({
@@ -168,8 +168,8 @@ export class MapsPage {
   {   
     
     this.getCurrentLocation();
-    let lat = this.locationData.latitudeSingleton;
-    let long = this.locationData.longitudeSingleton;
+    let lat = this.persistentData.latitudeSingleton;
+    let long = this.persistentData.longitudeSingleton;
 
     let markerSaoPedro = leaflet.marker(['-30.031867', '-51.230465']).addTo(this.map);
     markerSaoPedro.bindPopup("<b>Theatro São Pedro</b><br>Place Description.").on('click', () => {

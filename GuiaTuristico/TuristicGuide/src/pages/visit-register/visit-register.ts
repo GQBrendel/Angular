@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { LocationProvider } from '../../providers/location/location';
+import { PersistentData } from '../../providers/persistentData/persistentData';
 import firebase from 'firebase';
 
 /**
@@ -20,20 +20,21 @@ export class VisitRegisterPage {
   public visitorReport : string;
   public visitorScore : number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public locationData : LocationProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public persistentData : PersistentData) {
   }
   ionViewDidEnter() {
-    const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.locationData.locationFirebaseName);
+    const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.persistentData.locationFirebaseName);
     placeRef.on('value', personSnapshot => {
       this.myPlace = personSnapshot.val();
     });
+    console.log("Olha só que chegou eh o: " + this.persistentData.usernameValue);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VisitRegisterPage');
   }
   endRegister(visitorReport: string, visitorScore: number): void {
-    const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.locationData.locationFirebaseName);
+    const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.persistentData.locationFirebaseName);
     placeRef.update({
       visitorReport,
       visitorScore

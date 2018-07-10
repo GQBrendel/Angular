@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import firebase from 'firebase';
 import { AuthProvider } from '../../providers/auth/auth';
-import { LocationProvider } from '../../providers/location/location';
+import { PersistentData } from '../../providers/persistentData/persistentData';
 
 
 @IonicPage()
@@ -12,13 +12,13 @@ import { LocationProvider } from '../../providers/location/location';
 })
 export class HomePage {
 
-  public myPerson = {avatarURL : {i : ''}};
+  public myPerson = {usernameValue :'', avatarURL : {i : ''}};
   public myPlace = { urlImagem : ''};
   public nearSomePlace: boolean;
   public messageToUser: string;
   public imageHidder: number;
 
-  constructor(public navCtrl: NavController, public authData: AuthProvider,  public locationData: LocationProvider,public navParams: NavParams){}
+  constructor(public navCtrl: NavController, public authData: AuthProvider,  public persistentData: PersistentData,public navParams: NavParams){}
 
   ionViewDidLoad() {
     const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);
@@ -26,6 +26,8 @@ export class HomePage {
       this.myPerson = personSnapshot.val();
       if(this.myPerson.avatarURL != null){
         document.getElementById('homeAvatar').setAttribute('src', this.myPerson.avatarURL.i);
+    
+        
       }
     });
   }
@@ -33,7 +35,7 @@ export class HomePage {
   ionViewDidEnter() {
     this.checkIfNearLocation();
 
-    const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.locationData.locationFirebaseName);
+    const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.persistentData.locationFirebaseName);
     placeRef.on('value', personSnapshot => {
       this.myPlace = personSnapshot.val();
     
@@ -53,16 +55,24 @@ export class HomePage {
       this.myPerson = personSnapshot.val();
       if(this.myPerson.avatarURL != null){
         document.getElementById('homeAvatar').setAttribute('src', this.myPerson.avatarURL.i);
+
+        console.log("Tem que setar esse cara quando entra no Home");
+        console.log("User Singleton antes de ser setado: " + this.persistentData.usernameValue);
+        console.log("Deveria ser setado para " + this.myPerson.usernameValue);
+        this.persistentData.usernameValue = this.myPerson.usernameValue;
+        console.log("Acabou fincando " + this.persistentData.usernameValue + " mesmo.");
+
+
       }
     });
 
   }
   checkIfNearLocation()
   {
-    this.nearSomePlace = this.locationData.isCloseToLocation;
+    this.nearSomePlace = this.persistentData.isCloseToLocation;
     if(this.nearSomePlace)
     {
-      this.messageToUser = "Pertinho de " + this.locationData.locationFirebaseName;
+      this.messageToUser = "Pertinho de " + this.persistentData.locationFirebaseName;
       document.getElementById('placeImage').style.display = "inline";
     }
     else
@@ -75,7 +85,10 @@ export class HomePage {
 
   visitPlace()
   {
+       this.persistentData.usernameValue = this.myPerson.usernameValue;
+      console.log("Acabou fincando " + this.persistentData.usernameValue + " mesmo.");
       this.navCtrl.push('LocationPage');
+      
   }
 
 

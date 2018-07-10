@@ -4,6 +4,7 @@ import {storage } from 'firebase';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import firebase from 'firebase';
 import { AuthProvider } from '../../providers/auth/auth';
+import { PersistentData } from '../../providers/persistentData/persistentData';
 
 
 @IonicPage()
@@ -13,14 +14,15 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 export class ProfilePage {
 
-  public myPerson = {avatarURL : {i : ''}};
+  public myPerson = {usernameValue: '', avatarURL : {i : ''}};
   public avatarURL;
 
   
-  constructor(private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public authData: AuthProvider) {
-    var metadata = {
-      contentType: 'image/jpeg'
-    }
+  constructor(private camera: Camera, public navCtrl: NavController, public persistentData: PersistentData,
+    public navParams: NavParams, public authData: AuthProvider) {
+    // var metadata = {
+    //   contentType: 'image/jpeg'
+    // }
   }
 
   ionViewDidLoad() {
