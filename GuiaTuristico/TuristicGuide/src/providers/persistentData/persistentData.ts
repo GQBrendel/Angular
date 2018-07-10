@@ -20,5 +20,6 @@ export class PersistentData {
   public locationFirebaseName: string = '';
 
   public usernameValue: string = 'Sucrilhos';
+  public userIdentifier: string = 'NOT DEFINED'
 
 }

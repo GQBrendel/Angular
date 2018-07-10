@@ -34,7 +34,7 @@ export class VisitRegisterPage {
     console.log('ionViewDidLoad VisitRegisterPage');
   }
   endRegister(visitorReport: string, visitorScore: number): void {
-    const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.persistentData.locationFirebaseName);
+    const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.persistentData.locationFirebaseName + '/' + this.persistentData.userIdentifier);
     placeRef.update({
       visitorReport,
       visitorScore

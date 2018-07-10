@@ -12,7 +12,7 @@ import { PersistentData } from '../../providers/persistentData/persistentData';
 })
 export class HomePage {
 
-  public myPerson = {usernameValue :'', avatarURL : {i : ''}};
+  public myPerson = {preMail: '', usernameValue :'', avatarURL : {i : ''}};
   public myPlace = { urlImagem : ''};
   public nearSomePlace: boolean;
   public messageToUser: string;
@@ -56,11 +56,12 @@ export class HomePage {
       if(this.myPerson.avatarURL != null){
         document.getElementById('homeAvatar').setAttribute('src', this.myPerson.avatarURL.i);
 
-        console.log("Tem que setar esse cara quando entra no Home");
-        console.log("User Singleton antes de ser setado: " + this.persistentData.usernameValue);
-        console.log("Deveria ser setado para " + this.myPerson.usernameValue);
-        this.persistentData.usernameValue = this.myPerson.usernameValue;
-        console.log("Acabou fincando " + this.persistentData.usernameValue + " mesmo.");
+         this.persistentData.usernameValue = this.myPerson.usernameValue;
+         
+         this.persistentData.userIdentifier = this.myPerson.preMail;
+        console.log("User Name Value: " + this.persistentData.usernameValue);
+        
+        console.log("User Identifier:  " + this.persistentData.userIdentifier );
 
 
       }
