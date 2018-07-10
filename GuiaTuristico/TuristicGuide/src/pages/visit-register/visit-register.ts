@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Loading, LoadingController} from 'ionic-angular';
 import { PersistentData } from '../../providers/persistentData/persistentData';
 import firebase from 'firebase';
 import {storage } from 'firebase';
@@ -26,9 +26,10 @@ export class VisitRegisterPage {
   public totalVisits : number;
   public visitorImgURL : any = 'https://st.motortrend.com/uploads/sites/5/2015/11/noimage.png?interpolation=lanczos-none&fit=around|660:440';
 
+  public loading:Loading;
  
   
-  constructor(private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public persistentData : PersistentData) {
+  constructor(public loadingCtrl: LoadingController, private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public persistentData : PersistentData) {
   }
   ionViewDidEnter() {
     const placeRef: firebase.database.Reference = firebase.database().ref('Places/' + this.persistentData.locationFirebaseName);
@@ -99,5 +100,14 @@ export class VisitRegisterPage {
     placeRefUpdateVisits.update({
       totalVisits
     })
+
+    this.loading = this.loadingCtrl.create({
+      dismissOnPageChange: true,
+    });
+    this.loading.present();
+    setTimeout(() => {
+      this.loading.dismiss();
+      this.navCtrl.pop();
+    }, 2000);
     }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Loading, LoadingController, AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Loading, LoadingController} from 'ionic-angular';
 import {storage } from 'firebase';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import firebase from 'firebase';
@@ -72,7 +72,7 @@ export class ProfilePage {
     this.loading.present();
     setTimeout(() => {
       this.loading.dismiss();
-    }, 1000);
+    }, 2000);
 
     let storageRef = storage().ref();
     // Create a timestamp as filename
@@ -122,6 +122,7 @@ export class ProfilePage {
     setTimeout(() => {
       this.loading.dismiss();
       alert('Perfil Atualizado');
+      this.navCtrl.setRoot('HomePage');
     }, 3000);
   }
 }
