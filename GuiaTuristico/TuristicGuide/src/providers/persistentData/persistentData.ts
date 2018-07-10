@@ -18,8 +18,11 @@ export class PersistentData {
   public longitudeSingleton:any = '';
   public isCloseToLocation : boolean = false;
   public locationFirebaseName: string = '';
+  public totalVisits: number = 0;
 
   public usernameValue: string = 'Sucrilhos';
-  public userIdentifier: string = 'NOT DEFINED'
+  public userIdentifier: string = 'NOT DEFINED';
+  public userAvatarURL: string = 'NOT Defined'
+
 
 }
