@@ -22,9 +22,14 @@ export class MapsPage {
   }
   ionViewDidEnter()
   {
-    this.addCustomMarks("Viamão");
     this.populateMap();
     this.checkIfNearLocation();
+    try{
+      if(this.persistentData.latitudeSingleton != null);
+      this.map.setView([this.persistentData.latitudeSingleton, this.persistentData.longitudeSingleton], 15);
+    }
+    catch(e){console.log(e)};
+ 
   }
   loadmap() {
     this.map = leaflet.map("map").fitWorld();
@@ -75,26 +80,29 @@ export class MapsPage {
     this.getCurrentLocation();
     let lat = this.persistentData.latitudeSingleton;
     let long = this.persistentData.longitudeSingleton;
-    let calculatedDistance = 100000;
 
 
-    if((this.getDistanceFromLatLonInKm(lat, long, -30.031867, -51.230465)) < 0.8) //Perto do Theatro São Pedro
+    if((this.getDistanceFromLatLonInKm(lat, long, -30.031867, -51.230465)) < 2) //Perto do Theatro São Pedro
     {
       this.persistentData.isCloseToLocation = true;
-     // this.persistentData.closeLocationName = "Theatro São Pedro";
      this.persistentData.locationFirebaseName = "TheatroSaoPedro";
     }
-    else if((this.getDistanceFromLatLonInKm(lat, long, -30.027154, -51.175086)) < 0.4) //Perto da Sinos
+    else if((this.getDistanceFromLatLonInKm(lat, long, -30.028760, -51.231705)) < 2) //Perto do MARGS
+    {      
+      this.persistentData.isCloseToLocation = true;
+      this.persistentData.locationFirebaseName = "margs";
+    }
+    else if((this.getDistanceFromLatLonInKm(lat, long, -30.027154, -51.175086)) < 2) //Perto da Sinos
     {
       this.persistentData.isCloseToLocation = true;
       this.persistentData.locationFirebaseName = "Unisinos";
     }
-    else if((this.getDistanceFromLatLonInKm(lat, long, -30.031012, -51.234195)) < 0.4) //Perto da Casa de Cultura
+    else if((this.getDistanceFromLatLonInKm(lat, long, -30.031012, -51.234195)) < 2) //Perto da Casa de Cultura
     {
       this.persistentData.isCloseToLocation = true;
-      this.persistentData.locationFirebaseName = "Casa de Cultura";
+      this.persistentData.locationFirebaseName = "casadecultura";
     }
-    else if((this.getDistanceFromLatLonInKm(lat, long, -30.073605, -51.100933)) < 2) //Perto da Casa de Cultura
+    else if((this.getDistanceFromLatLonInKm(lat, long, -30.073605, -51.100933)) < 2) //Perto de Viamão
     {
       this.persistentData.isCloseToLocation = true;
       this.persistentData.locationFirebaseName = "Viamao";
@@ -176,17 +184,13 @@ export class MapsPage {
       leaflet.openPopup();
     })
 
-    let monumentoJulioDeCastilhos = leaflet.marker([ -30.032522, -51.230178]).addTo(this.map);
-    monumentoJulioDeCastilhos.bindPopup("<b>Monumento Julio De Castilhos</b><br>Place Description.").on('click', () => {
+    let margs = leaflet.marker([ -30.028760, -51.231705]).addTo(this.map);
+    margs.bindPopup("<b>MARGS</b><br>Museu de Arte do Rio Grande do Sul.").on('click', () => {
       leaflet.openPopup();
     })
 
-    let catedral = leaflet.marker([ -30.033853, -51.230704]).addTo(this.map);
-    catedral.bindPopup("<b>Catedral Metropolitana de Porto Alegre!</b><br>Place Description.").on('click', () => {
-      leaflet.openPopup();
-    })
-    let CDC = leaflet.marker([-30.031012,-51.234195]).addTo(this.map);
-    CDC.bindPopup("<b>Casa de Cultura Mário Quintana</b><br>Place Description + this.getDistanceFromLatLonInKm(lat, long, -30.031012, -51.234195").on('click', () => {
+    let casadecultura = leaflet.marker([-30.031012,-51.234195]).addTo(this.map);
+    casadecultura.bindPopup("<b>Casa de Cultura Mário Quintana</b><br>Place Description + this.getDistanceFromLatLonInKm(lat, long, -30.031012, -51.234195").on('click', () => {
       leaflet.openPopup();
     })
     let unisinos = leaflet.marker([-30.027154,-51.175086]).addTo(this.map);
@@ -194,23 +198,9 @@ export class MapsPage {
       leaflet.openPopup();
     })
     let viamao = leaflet.marker([-30.073605, -51.100933]).addTo(this.map);
-    unisinos.bindPopup("<b>Viamão</b><br>Desenvolvimento é aqui.").on('click', () => {
+    viamao.bindPopup("<b>Viamão</b><br>Desenvolvimento é aqui.").on('click', () => {
       leaflet.openPopup();
     })
-  }
-  includeSaoPedro(location : string)
-  {
-    console.log("Called Add Custo Location");
-    this.nativeGeocoder.forwardGeocode(location)
-    .then((coordinates: NativeGeocoderForwardResult[]) => {
-      let markerGroup = leaflet.featureGroup();
-    let marker: any = leaflet.marker(['-30.031867', '-51.230465']).on('click', () => {
-      alert('Marker clicked' + location);
-    })
-    markerGroup.addLayer(marker);
-    this.map.addLayer(markerGroup);
-    })
-  .catch((error: any) => console.log(error));
   }
 
 
