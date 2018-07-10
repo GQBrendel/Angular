@@ -38,11 +38,17 @@ export class ProfilePage {
   }
   ionViewDidEnter()
   {
-     document.getElementById('profileAvatar').setAttribute('src', this.myPerson.avatarURL.i);
-     console.log("My avatar URL sem i" + JSON.stringify(this.myPerson.avatarURL));
-    console.log("My avatar URL com i " + JSON.stringify(this.myPerson.avatarURL.i));
-    
-    console.log("My avatar URL com i sem stringify" + this.myPerson.avatarURL.i);
+    try {
+      document.getElementById('profileAvatar').setAttribute('src', this.myPerson.avatarURL.i);
+      console.log("My avatar URL sem i" + JSON.stringify(this.myPerson.avatarURL));
+      console.log("My avatar URL com i " + JSON.stringify(this.myPerson.avatarURL.i));
+      console.log("My avatar URL com i sem stringify" + this.myPerson.avatarURL.i);
+      }
+      catch(e) {
+        console.log(e);
+      }
+      
+  
   }
  
   captureDataUrl: string;

@@ -39,15 +39,16 @@ export class HomePage {
     placeRef.on('value', personSnapshot => {
       this.myPlace = personSnapshot.val();
     
-      if(this.myPlace != null)
-      {
-        document.getElementById('placeImage').setAttribute('src', this.myPlace.urlImagem);
+      try {
+        if(this.myPlace != null)
+        {
+          document.getElementById('placeImage').setAttribute('src', this.myPlace.urlImagem);
+        }
       }
-      else
+      catch(e)
       {
         console.log("URL da imagem do lugar não foi carregada do Firebase");
       }
-
     });
 
     const personRef: firebase.database.Reference = firebase.database().ref('Users/' + this.authData.preMailSingleton);

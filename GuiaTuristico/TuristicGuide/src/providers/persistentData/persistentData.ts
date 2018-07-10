@@ -21,9 +21,9 @@ export class PersistentData {
   public totalVisits: number = 0;
   
 
-  public usernameValue: string = 'Sucrilhos';
-  public userIdentifier: string = 'NOT DEFINED';
-  public userAvatarURL: string = 'NOT DEFINED';
+  public usernameValue: string = undefined;
+  public userIdentifier: string = undefined;
+  public userAvatarURL: string = undefined;
   public postLikes: number = 0;
 
 

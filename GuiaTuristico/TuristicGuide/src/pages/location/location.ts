@@ -11,7 +11,7 @@ import firebase from 'firebase';
 })
 export class LocationPage {
 
-  public myPlace = {likes: 0, visitorReport: '', visitorImgURL: '', visitorName: '', visitorAvatarUrl: '', totalVisits: 0, nomeDoLocal : 'Placeholder', urlImagem : 'empty'};
+  public myPlace = {likes: 0, visitorReport: '', visitorImgURL: '', visitorName: '', visitorAvatarUrl: undefined, totalVisits: 0, nomeDoLocal : 'Placeholder', urlImagem : 'empty'};
   public url;
 
   public placeName: string;
@@ -64,7 +64,6 @@ export class LocationPage {
         this.myPlace = personSnapshot.val();
         
         document.getElementById('visitor3').setAttribute('style', "display: inline-block;");      
-        document.getElementById('visitor3Avatar').setAttribute('src', this.myPlace.visitorAvatarUrl);
         
         this.visitor3_Name = this.myPlace.visitorName;
         
@@ -74,6 +73,13 @@ export class LocationPage {
         this.visitor3_Likes = this.myPlace.likes;
 
         this.visitor3_Report = this.myPlace.visitorReport;
+
+        let avatarURL = this.myPlace.visitorAvatarUrl;
+        if(avatarURL == null || avatarURL == 'NOT DEFINED')
+        {
+          avatarURL = '"http://kiwilandingpad.com/wp-content/uploads/2014/05/avatar-placeholder.png"';
+        }
+        document.getElementById('visitor3Avatar').setAttribute('src', avatarURL);
       });
     }
     if(totalVisits > 1) //coloca os atributos do 02
@@ -83,7 +89,6 @@ export class LocationPage {
         this.myPlace = personSnapshot.val();
         
         document.getElementById('visitor2').setAttribute('style', "display: inline-block;");      
-        document.getElementById('visitor2Avatar').setAttribute('src', this.myPlace.visitorAvatarUrl);
         
         this.visitor2_Name = this.myPlace.visitorName;
         
@@ -93,6 +98,13 @@ export class LocationPage {
         this.visitor2_Likes = this.myPlace.likes;
 
         this.visitor2_Report = this.myPlace.visitorReport;
+
+        let avatarURL = this.myPlace.visitorAvatarUrl;
+        if(avatarURL == null || avatarURL == 'NOT DEFINED')
+        {
+          avatarURL = '"http://kiwilandingpad.com/wp-content/uploads/2014/05/avatar-placeholder.png"';
+        }
+        document.getElementById('visitor2Avatar').setAttribute('src', avatarURL);
       });
     }
     if(totalVisits > 0) //Coloca os atricutos do 01
@@ -102,16 +114,23 @@ export class LocationPage {
         this.myPlace = personSnapshot.val();
         
         document.getElementById('visitor1').setAttribute('style', "display: inline-block;");      
-        document.getElementById('visitor1Avatar').setAttribute('src', this.myPlace.visitorAvatarUrl);
         
         this.visitor1_Name = this.myPlace.visitorName;
         
         this.url = this.myPlace.visitorImgURL;
         document.getElementById('placeImage1').setAttribute('src', this.url);
+         
 
         this.visitor1_Likes = this.myPlace.likes;
 
         this.visitor1_Report = this.myPlace.visitorReport;
+
+        let avatarURL = this.myPlace.visitorAvatarUrl;
+        if(avatarURL == null || avatarURL == 'NOT DEFINED' )
+        {
+          avatarURL = '"http://kiwilandingpad.com/wp-content/uploads/2014/05/avatar-placeholder.png"';
+        }
+        document.getElementById('visitor1Avatar').setAttribute('src', avatarURL);
       });
     }
 
